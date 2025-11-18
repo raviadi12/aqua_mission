@@ -63,3 +63,7 @@ scale = Vector2(1, 1.003011)
 text = "Lvl 5"
 
 [connection signal="pressed" from="Lvl1" to="." method="_on_lvl_1_pressed"]
+[connection signal="pressed" from="Lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="Lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="Lvl4" to="." method="_on_lvl_4_pressed"]
+[connection signal="pressed" from="Lvl5" to="." method="_on_lvl_5_pressed"]

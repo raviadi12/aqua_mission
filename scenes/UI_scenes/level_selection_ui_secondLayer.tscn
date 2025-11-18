@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c2ctl4yd6mqkm"]
+[gd_scene load_steps=2 format=3 uid="uid://c2ctl4yd6mqkm"]
+
+[ext_resource type="Script" uid="uid://cqnivxi2uby0x" path="res://script/level_selection_ui_first_layer1.gd" id="1_m2and"]
 
 [node name="Level_selection_ui" type="Control"]
 layout_mode = 3
@@ -8,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.0087059, 1.0630984)
+script = ExtResource("1_m2and")
 
 [node name="Lvl6" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
@@ -58,3 +61,9 @@ offset_right = 1505.9342
 offset_bottom = 831.12885
 scale = Vector2(1, 1.003011)
 text = "Lvl 10"
+
+[connection signal="pressed" from="Lvl6" to="." method="_on_lvl_6_pressed"]
+[connection signal="pressed" from="Lvl7" to="." method="_on_lvl_7_pressed"]
+[connection signal="pressed" from="Lvl8" to="." method="_on_lvl_8_pressed"]
+[connection signal="pressed" from="Lvl9" to="." method="_on_lvl_9_pressed"]
+[connection signal="pressed" from="Lvl10" to="." method="_on_lvl_10_pressed"]
