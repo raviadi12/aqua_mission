@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j8je0dgofbps"
-path="res://.godot/imported/lurking.png-322d14a2957ca5a59bf29f1e9dce796c.ctex"
+uid="uid://dobl18nqcitd3"
+path="res://.godot/imported/Tornado-sheet.png-6217caa6608351cef960295bc7b770ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kraken/lurking.png"
-dest_files=["res://.godot/imported/lurking.png-322d14a2957ca5a59bf29f1e9dce796c.ctex"]
+source_file="res://assets/Tornado/Tornado-sheet.png"
+dest_files=["res://.godot/imported/Tornado-sheet.png-6217caa6608351cef960295bc7b770ec.ctex"]
 
 [params]
 

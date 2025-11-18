@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds3bktaa2nn47"
-path="res://.godot/imported/Trash_sheets.png-f4f9f093945eb91937210913222eb8ca.ctex"
+uid="uid://cwmyefas14hrh"
+path="res://.godot/imported/turning_aggressive.png-764d5848632c501ba6c927cb7673fe63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileMap/Trash_sheets.png"
-dest_files=["res://.godot/imported/Trash_sheets.png-f4f9f093945eb91937210913222eb8ca.ctex"]
+source_file="res://assets/Kraken/turning_aggressive.png"
+dest_files=["res://.godot/imported/turning_aggressive.png-764d5848632c501ba6c927cb7673fe63.ctex"]
 
 [params]
 

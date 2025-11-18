@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqnw6p0s0w27n"
-path="res://.godot/imported/Ocean1.png-edd6d997d172386d57a467ce26f47a43.ctex"
+uid="uid://cp0h2ia0e1onw"
+path="res://.godot/imported/North3.png-88d5769f478937b359b79160dbecac94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileMap/Ocean1.png"
-dest_files=["res://.godot/imported/Ocean1.png-edd6d997d172386d57a467ce26f47a43.ctex"]
+source_file="res://assets/North3.png"
+dest_files=["res://.godot/imported/North3.png-88d5769f478937b359b79160dbecac94.ctex"]
 
 [params]
 

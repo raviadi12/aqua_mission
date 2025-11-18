@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dobl18nqcitd3"
-path="res://.godot/imported/Tornado-sheet.png-684a3bedbba176198705c935149aad9a.ctex"
+uid="uid://ds3bktaa2nn47"
+path="res://.godot/imported/Trash_sheets.png-d412c79643948235f4392898a2ecdf0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tornado/Tornado-sheet.png"
-dest_files=["res://.godot/imported/Tornado-sheet.png-684a3bedbba176198705c935149aad9a.ctex"]
+source_file="res://assets/tileMap/asset_tilemap/Trash_sheets.png"
+dest_files=["res://.godot/imported/Trash_sheets.png-d412c79643948235f4392898a2ecdf0a.ctex"]
 
 [params]
 

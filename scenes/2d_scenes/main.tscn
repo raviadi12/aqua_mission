@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="5_nvkn5"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_leuw7"]
 [ext_resource type="Script" uid="uid://cg8fy1xueql1e" path="res://scenes/2d_scenes/sub_viewport.gd" id="7_nvkn5"]
-[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://Objects/mini_menu.gd" id="10_2q5ej"]
+[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="10_2q5ej"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="11_213ij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
