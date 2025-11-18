@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxcdox5lo02e5"]
+
+[ext_resource type="Script" uid="uid://00d1mfswmvy8" path="res://Objects/timer.gd" id="1_ex4pc"]
+
+[node name="Panel" type="Panel"]
+offset_left = -943.0
+offset_top = -517.0
+offset_right = -903.0
+offset_bottom = -477.0
+scale = Vector2(11.120001, 1.3199987)
+script = ExtResource("1_ex4pc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.6187049
+offset_right = 38.381294
+offset_bottom = 23.0
+scale = Vector2(0.14334421, 1.6868355)
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.2589927
+offset_right = 41.25899
+offset_bottom = 23.0
+scale = Vector2(0.14334421, 1.6868355)
+text = "00"
+horizontal_alignment = 2

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c2ctl4yd6mqkm"]
+
+[node name="Level_selection_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0087059, 1.0630984)
+
+[node name="Lvl6" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 100.128296
+offset_top = 130.7499
+offset_right = 220.1283
+offset_bottom = 250.7499
+scale = Vector2(1, 1.003011)
+text = "Lvl 6"
+
+[node name="Lvl7" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 493.7019
+offset_top = 239.865
+offset_right = 613.7019
+offset_bottom = 359.865
+scale = Vector2(1, 1.003011)
+text = "Lvl 7"
+
+[node name="Lvl8" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 393.57364
+offset_top = 559.6847
+offset_right = 513.5736
+offset_bottom = 679.6847
+scale = Vector2(1, 1.003011)
+text = "Lvl 8"
+
+[node name="Lvl9" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 878.3532
+offset_top = 707.36633
+offset_right = 998.3532
+offset_bottom = 827.36633
+scale = Vector2(1, 1.003011)
+text = "Lvl 9"
+
+[node name="Lvl10" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 1385.9342
+offset_top = 711.12885
+offset_right = 1505.9342
+offset_bottom = 831.12885
+scale = Vector2(1, 1.003011)
+text = "Lvl 10"

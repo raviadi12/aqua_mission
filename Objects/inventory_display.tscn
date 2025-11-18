@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dinx1t8m00xma"]
+
+[ext_resource type="Script" uid="uid://dasipc11aprxi" path="res://script/inventory_display.gd" id="1_c76je"]
+[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="2_don6c"]
+[ext_resource type="Texture2D" uid="uid://b1ltxybk35kr4" path="res://assets/trashBag.png" id="3_don6c"]
+
+[node name="Inventory_display" type="Node2D"]
+script = ExtResource("1_c76je")
+
+[node name="Inventory_display_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Inventory_display_UI_background" type="ColorRect" parent="Inventory_display_UI"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 80.0
+offset_bottom = 72.0
+
+[node name="Inventory_display_UI_item_quantity" type="Label" parent="Inventory_display_UI"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 53.0
+offset_right = 88.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_don6c")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrashBag" type="Sprite2D" parent="."]
+position = Vector2(42, 34)
+scale = Vector2(0.1105, 0.10949999)
+texture = ExtResource("3_don6c")

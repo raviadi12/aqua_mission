@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk8vsp5hxrxsx"]
+
+[ext_resource type="Texture2D" uid="uid://d2boo0umjyqu7" path="res://assets/tornado-graphic-clipart-design-free-png.png" id="1_tdbyk"]
+[ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="2_jdjvc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_tdbyk")
+script = ExtResource("2_jdjvc")
+move_speed = 10.0

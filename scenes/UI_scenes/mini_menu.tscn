@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca6iawis3m3fa"]
+
+[ext_resource type="Script" uid="uid://cq4njkwkhcm8e" path="res://script/mini_menu.gd" id="1_7m3fq"]
+
+[node name="Mini_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7m3fq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visibility_layer = 16
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -466.0
+offset_top = -240.5
+offset_right = 466.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+
+[node name="Resume" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2765625
+anchor_top = 0.57222223
+anchor_right = 0.37604168
+anchor_bottom = 0.6851852
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+metadata/_edit_use_anchors_ = true
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44791666
+anchor_top = 0.57222223
+anchor_right = 0.5473958
+anchor_bottom = 0.6851852
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.61875
+anchor_top = 0.5694444
+anchor_right = 0.7182292
+anchor_bottom = 0.6824074
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

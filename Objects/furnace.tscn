@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://emtmjwq7om05"]
+
+[ext_resource type="Script" uid="uid://bnmqm2yefx4ve" path="res://script/furnace.gd" id="1_5e7u4"]
+[ext_resource type="Texture2D" uid="uid://c7fb677okjyh6" path="res://assets/my-first-pixelart-drawing-its-a-furnace-for-my-automation-v0-649yya5jzf1e1-removebg-preview.png" id="2_6y41g"]
+[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="3_6y41g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8m4t"]
+radius = 207.87015
+
+[node name="Furnace" type="Node2D"]
+script = ExtResource("1_5e7u4")
+
+[node name="Area_Furnace" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Area_Furnace_Collision" type="CollisionShape2D" parent="Area_Furnace"]
+shape = SubResource("CircleShape2D_g8m4t")
+
+[node name="Furnace_Sprite" type="Sprite2D" parent="."]
+position = Vector2(1.999999, 4)
+scale = Vector2(0.39698365, 0.38137254)
+texture = ExtResource("2_6y41g")
+
+[node name="Press[O]" type="Control" parent="."]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 0
+offset_left = -28.0
+offset_top = 239.0
+offset_right = 12.0
+offset_bottom = 279.0
+
+[node name="Label" type="Label" parent="Press[O]"]
+z_index = 25
+layout_mode = 0
+offset_left = -59.999996
+offset_top = -132.0
+offset_right = 721.0
+offset_bottom = -59.0
+scale = Vector2(0.48308468, 0.5673972)
+theme_type_variation = &"HeaderSmall"
+theme_override_fonts/font = ExtResource("3_6y41g")
+theme_override_font_sizes/font_size = 30
+text = "PRESS [O] TO PICK UP"
+
+[connection signal="area_entered" from="Area_Furnace" to="." method="_on_area_furnace_area_entered"]
+[connection signal="area_exited" from="Area_Furnace" to="." method="_on_area_furnace_area_exited"]

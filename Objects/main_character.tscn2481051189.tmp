@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqqhadeage5s8"]
+
+[ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
+[ext_resource type="Texture2D" uid="uid://crs5t1f60c8kd" path="res://assets/Kapal_Sementara.png" id="2_uvl38"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q423"]
+size = Vector2(51, 52.5)
+
+[node name="MainCharacter" type="CharacterBody2D"]
+script = ExtResource("1_wmkwl")
+
+[node name="PictureOfAShip" type="Sprite2D" parent="."]
+position = Vector2(274, 87)
+texture = ExtResource("2_uvl38")
+
+[node name="Ship\'sCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(274, 86.75)
+shape = SubResource("RectangleShape2D_2q423")

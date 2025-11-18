@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn112riygqtb0"]
+
+[ext_resource type="Script" uid="uid://7rlnttwurpim" path="res://script/switch_scene.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.290625
+anchor_top = 0.30277777
+anchor_right = 0.74114585
+anchor_bottom = 0.5092593
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+metadata/_edit_use_anchors_ = true
+
+[node name="QUIT" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15708822
+anchor_top = 0.5060005
+anchor_right = 0.60760903
+anchor_bottom = 0.71248204
+offset_left = 251.39063
+offset_top = 67.51941
+offset_right = 251.39063
+offset_bottom = 67.51941
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]

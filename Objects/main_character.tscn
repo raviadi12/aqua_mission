@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqqhadeage5s8"]
+
+[ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
+[ext_resource type="Texture2D" uid="uid://cp0h2ia0e1onw" path="res://Objects/North3.png" id="3_dmq7t"]
+[ext_resource type="PackedScene" uid="uid://dinx1t8m00xma" path="res://Objects/inventory_display.tscn" id="4_dmq7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q423"]
+size = Vector2(51, 52.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewcm5"]
+radius = 138.92444
+
+[node name="MainCharacter" type="CharacterBody2D"]
+process_mode = 3
+script = ExtResource("1_wmkwl")
+
+[node name="Ship\'sCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(274, 86.75)
+shape = SubResource("RectangleShape2D_2q423")
+
+[node name="Pick-Up_Area" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pick-Up_Area"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(276, 86)
+shape = SubResource("CircleShape2D_ewcm5")
+
+[node name="PictureOfAShip" type="Sprite2D" parent="."]
+position = Vector2(274, 87)
+texture = ExtResource("3_dmq7t")
+
+[node name="Item_displey" type="CanvasLayer" parent="."]
+
+[node name="Inventory_display" parent="Item_displey" instance=ExtResource("4_dmq7t")]
+position = Vector2(1062, 432)

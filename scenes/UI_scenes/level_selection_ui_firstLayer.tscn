@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy8ide76c10pt"]
+
+[ext_resource type="Script" uid="uid://cqnivxi2uby0x" path="res://script/level_selection_ui_first_layer1.gd" id="1_v3ptc"]
+
+[node name="Level_selection_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0087059, 1.0630984)
+script = ExtResource("1_v3ptc")
+
+[node name="Lvl1" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 77.326805
+offset_top = 252.09329
+offset_right = 197.32681
+offset_bottom = 372.0933
+scale = Vector2(1, 1.003011)
+text = "Lvl 1"
+
+[node name="Lvl2" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 383.6599
+offset_top = 481.6111
+offset_right = 503.6599
+offset_bottom = 601.6111
+scale = Vector2(1, 1.003011)
+text = "Lvl 2"
+
+[node name="Lvl3" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 823.8279
+offset_top = 301.94757
+offset_right = 943.8279
+offset_bottom = 421.94757
+scale = Vector2(1, 1.003011)
+text = "Lvl 3"
+
+[node name="Lvl4" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 1096.4543
+offset_top = 645.28357
+offset_right = 1216.4543
+offset_bottom = 765.28357
+scale = Vector2(1, 1.003011)
+text = "Lvl 4"
+
+[node name="Lvl5" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 1451.3646
+offset_top = 190.01062
+offset_right = 1571.3646
+offset_bottom = 310.01062
+scale = Vector2(1, 1.003011)
+text = "Lvl 5"
+
+[connection signal="pressed" from="Lvl1" to="." method="_on_lvl_1_pressed"]
