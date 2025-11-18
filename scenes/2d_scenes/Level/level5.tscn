@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="4_llfh7"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_nqxyo"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_oj1jj"]
-[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://Objects/mini_menu.gd" id="7_wc274"]
+[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_wc274"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_28eli"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_a86xg"]
 

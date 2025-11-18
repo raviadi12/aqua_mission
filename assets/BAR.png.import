@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1wyag6xnn63c"
-path="res://.godot/imported/aggressive.png-4cde95fbd661a0c6b5efe7ff84269519.ctex"
+uid="uid://iaap763rtkd2"
+path="res://.godot/imported/BAR.png-d7f8ff2a52c650fe3079bc06f5aa5914.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kraken/aggressive.png"
-dest_files=["res://.godot/imported/aggressive.png-4cde95fbd661a0c6b5efe7ff84269519.ctex"]
+source_file="res://assets/BAR.png"
+dest_files=["res://.godot/imported/BAR.png-d7f8ff2a52c650fe3079bc06f5aa5914.ctex"]
 
 [params]
 

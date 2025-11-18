@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwmyefas14hrh"
-path="res://.godot/imported/turning_aggressive.png-ca1ea3ec89ecb43e885e82ddbff9329b.ctex"
+uid="uid://j8je0dgofbps"
+path="res://.godot/imported/lurking.png-6801613d0d0b25467f76964fa72e50d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kraken/turning_aggressive.png"
-dest_files=["res://.godot/imported/turning_aggressive.png-ca1ea3ec89ecb43e885e82ddbff9329b.ctex"]
+source_file="res://assets/Kraken/lurking.png"
+dest_files=["res://.godot/imported/lurking.png-6801613d0d0b25467f76964fa72e50d0.ctex"]
 
 [params]
 

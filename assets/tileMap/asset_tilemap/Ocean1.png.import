@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j8je0dgofbps"
-path="res://.godot/imported/lurking.png-322d14a2957ca5a59bf29f1e9dce796c.ctex"
+uid="uid://bqnw6p0s0w27n"
+path="res://.godot/imported/Ocean1.png-1dbfa1cee91b89f98fca9ba6242fd0fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kraken/lurking.png"
-dest_files=["res://.godot/imported/lurking.png-322d14a2957ca5a59bf29f1e9dce796c.ctex"]
+source_file="res://assets/tileMap/asset_tilemap/Ocean1.png"
+dest_files=["res://.godot/imported/Ocean1.png-1dbfa1cee91b89f98fca9ba6242fd0fc.ctex"]
 
 [params]
 

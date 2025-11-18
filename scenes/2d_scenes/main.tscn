@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxp67kj70dxub"]
+[gd_scene load_steps=17 format=3 uid="uid://bxp67kj70dxub"]
 
 [ext_resource type="Texture2D" uid="uid://bexlfl0bw42pq" path="res://assets/OceanWave.png" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://b4pnbyl4sftj4" path="res://scenes/2d_scenes/main.gd" id="1_287t3"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="3_ngunx"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="4_jn6bq"]
 [ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="5_nvkn5"]
+[ext_resource type="Texture2D" uid="uid://cvdh0ubg4sqq0" path="res://assets/BarBackgorund.png" id="6_cgiqu"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_leuw7"]
+[ext_resource type="Texture2D" uid="uid://iaap763rtkd2" path="res://assets/BAR.png" id="7_135r4"]
 [ext_resource type="Script" uid="uid://cg8fy1xueql1e" path="res://scenes/2d_scenes/sub_viewport.gd" id="7_nvkn5"]
-[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://Objects/mini_menu.gd" id="10_2q5ej"]
+[ext_resource type="Script" uid="uid://00d1mfswmvy8" path="res://script/timer.gd" id="8_qfpmf"]
+[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="10_2q5ej"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="11_213ij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
@@ -54,6 +57,16 @@ limit_top = -10000
 limit_right = 10000
 limit_bottom = 10000
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MainCharacter/GameCamera"]
+offset_left = -948.0
+offset_top = -460.0
+offset_right = -692.0
+offset_bottom = -396.0
+texture_under = ExtResource("6_cgiqu")
+texture_over = ExtResource("7_135r4")
+texture_progress = ExtResource("7_135r4")
+script = ExtResource("8_qfpmf")
+
 [node name="Panel" parent="MainCharacter/GameCamera" instance=ExtResource("5_nvkn5")]
 visibility_layer = 256
 
@@ -97,3 +110,5 @@ script = ExtResource("10_2q5ej")
 
 [node name="Mini_menu" parent="Mini_menu" instance=ExtResource("11_213ij")]
 visible = false
+
+[connection signal="value_changed" from="MainCharacter/GameCamera/TextureProgressBar" to="MainCharacter/GameCamera/TextureProgressBar" method="_on_value_changed"]

@@ -4,16 +4,16 @@ extends Node
 const SCENE_PATH : Dictionary = {
 	"main_menu" = "uid://bn112riygqtb0",
 	"lvl_selection" = "uid://doac12axf5utw",
-	"lvl1" = "res://scenes/2d_scenes/level1.tscn",
-	"lvl2" = "res://scenes/2d_scenes/level2.tscn",
-	"lvl3" = "res://scenes/2d_scenes/level3.tscn",
-	"lvl4" = "res://scenes/2d_scenes/level4.tscn",
-	"lvl5" = "res://scenes/2d_scenes/level5.tscn",
-	"lvl6" = "res://scenes/2d_scenes/level6.tscn",
-	"lvl7" = "res://scenes/2d_scenes/level7.tscn",
-	"lvl8" = "res://scenes/2d_scenes/level8.tscn",
-	"lvl9" = "res://scenes/2d_scenes/level9.tscn",
-	"lvl10" = "res://scenes/2d_scenes/level10.tscn",
+	"lvl1" = "uid://davbutwfeku6e",
+	"lvl2" = "uid://dinipiddvcki8",
+	"lvl3" = "uid://bmdfiakc0kql2",
+	"lvl4" = "uid://sh14dt0yf76q",
+	"lvl5" = "uid://dqfi2jr6nt861",
+	"lvl6" = "uid://b237quqtxusn7",
+	"lvl7" = "uid://ser1cm26hghk",
+	"lvl8" = "uid://c832nqcb0ujh5",
+	"lvl9" = "uid://jqm13a2y0hj1",
+	"lvl10" = "uid://dxmy655a6y017",
 }
 
 #Global Function
