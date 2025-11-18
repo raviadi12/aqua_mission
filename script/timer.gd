@@ -2,7 +2,7 @@ extends Panel
 
 @onready var minute_label = $Label
 @onready var second_label = $Label2
-
+@onready var bar = $"../TextureProgressBar"
 
 var total_time = 180.0  # 3 minutesp
 var time_left = total_time
@@ -18,6 +18,7 @@ func _process(delta):
 		if time_left < 0:
 			time_left = 0
 		update_labels()
+		_on_value_changed(time_left)
 	
 
 func update_labels():
@@ -36,3 +37,7 @@ func update_labels():
 	else:
 		second_label.add_theme_color_override("font_color", Color.WHITE)
 		minute_label.add_theme_color_override("font_color", Color.WHITE)
+
+
+func _on_value_changed(value: float) -> void:
+	time_left = time_left - 1

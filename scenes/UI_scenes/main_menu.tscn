@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn112riygqtb0"]
+[gd_scene load_steps=3 format=3 uid="uid://bn112riygqtb0"]
 
 [ext_resource type="Script" uid="uid://7rlnttwurpim" path="res://script/switch_scene.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://b4c60l35742oi" path="res://assets/Background/MainMenu.png" id="2_v31u5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,33 +12,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
-[node name="Play" type="Button" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_v31u5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.290625
-anchor_top = 0.30277777
-anchor_right = 0.74114585
-anchor_bottom = 0.5092593
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -427.0
+offset_top = -250.0
+offset_right = -227.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "PLAY"
+alignment = 2
+vertical_icon_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="QUIT" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.15708822
-anchor_top = 0.5060005
-anchor_right = 0.60760903
-anchor_bottom = 0.71248204
-offset_left = 251.39063
-offset_top = 67.51941
-offset_right = 251.39063
-offset_bottom = 67.51941
-grow_horizontal = 2
-grow_vertical = 2
+[node name="QUIT" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "QUIT"
+alignment = 2
+vertical_icon_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]

@@ -76,3 +76,7 @@ use_furnace={
 2d_render/layer_3="Burning"
 2d_physics/layer_1="World"
 2d_physics/layer_2="interaction"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
