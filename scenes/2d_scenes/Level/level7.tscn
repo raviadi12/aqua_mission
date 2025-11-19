@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://csrep2t4f1vow" path="res://assets/tileMap/Ocean_tilemap.tscn" id="1_3x6tg"]
 [ext_resource type="PackedScene" uid="uid://bx8godbtomd78" path="res://assets/tileMap/Trash_tile_Object.tscn" id="2_8cesb"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_oj8t3"]
-[ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="4_e1os7"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_5nn7k"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_a0vll"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_qxeen"]
@@ -29,8 +28,6 @@ limit_top = -10000
 limit_right = 10000
 limit_bottom = 10000
 
-[node name="Panel" parent="MainCharacter/GameCamera" instance=ExtResource("4_e1os7")]
-visibility_layer = 256
 
 [node name="Furnace" parent="." instance=ExtResource("5_5nn7k")]
 position = Vector2(-75, -479)

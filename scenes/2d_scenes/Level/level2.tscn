@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=4 uid="uid://dinipiddvcki8"]
+[gd_scene load_steps=10 format=4 uid="uid://dinipiddvcki8"]
 
+[ext_resource type="Script" path="res://script/level_init.gd" id="1_levelinit"]
 [ext_resource type="PackedScene" uid="uid://csrep2t4f1vow" path="res://assets/tileMap/Ocean_tilemap.tscn" id="1_wd8af"]
 [ext_resource type="PackedScene" uid="uid://bx8godbtomd78" path="res://assets/tileMap/Trash_tile_Object.tscn" id="2_43u7p"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_ltg1p"]
-[ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="4_l1imu"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_tle01"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_3d3eh"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_w5any"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_pkh50"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_levelinit")
 
 [node name="OceanTilemap" parent="." instance=ExtResource("1_wd8af")]
 position = Vector2(0, 1232)
@@ -28,8 +29,6 @@ limit_top = -10000
 limit_right = 10000
 limit_bottom = 10000
 
-[node name="Panel" parent="MainCharacter/GameCamera" instance=ExtResource("4_l1imu")]
-visibility_layer = 256
 
 [node name="Furnace" parent="." instance=ExtResource("5_tle01")]
 position = Vector2(-75, -479)

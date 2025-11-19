@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=4 uid="uid://sh14dt0yf76q"]
+[gd_scene load_steps=10 format=4 uid="uid://cag75epbhlvw6"]
 
 [ext_resource type="PackedScene" uid="uid://csrep2t4f1vow" path="res://assets/tileMap/Ocean_tilemap.tscn" id="1_u1dg8"]
 [ext_resource type="PackedScene" uid="uid://bx8godbtomd78" path="res://assets/tileMap/Trash_tile_Object.tscn" id="2_vymrn"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_0v14u"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_n6vvy"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_m0lav"]
-[ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_g05e6"]
+[ext_resource type="Script" path="res://script/mini_menu (2).gd" id="7_g05e6"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_nkamy"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_7t01d"]
 
-[node name="Main" type="Node2D"]
+[node name="Main3" type="Node2D"]
 
 [node name="OceanTilemap" parent="." instance=ExtResource("1_u1dg8")]
 position = Vector2(0, 1232)
@@ -28,6 +28,9 @@ limit_top = -10000
 limit_right = 10000
 limit_bottom = 10000
 
+offset_right = -903.0
+offset_bottom = -477.0
+scale = Vector2(11.120001, 1.3199987)
 
 [node name="Furnace" parent="." instance=ExtResource("5_n6vvy")]
 position = Vector2(-75, -479)

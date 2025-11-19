@@ -1,5 +1,120 @@
-[gd_scene format=3 uid="uid://cq0w7ygtvnrts"]
+[gd_scene load_steps=18 format=3 uid="uid://cq0w7ygtvnrts"]
+
+[ext_resource type="Script" uid="uid://bm1v2wa4siojd" path="res://script/kraken.gd" id="1_kraken"]
+[ext_resource type="Texture2D" uid="uid://j8je0dgofbps" path="res://assets/Kraken/lurking.png" id="1_ovu8g"]
+[ext_resource type="Texture2D" uid="uid://b1wyag6xnn63c" path="res://assets/Kraken/aggressive.png" id="1_y8w0l"]
+[ext_resource type="Texture2D" uid="uid://cwmyefas14hrh" path="res://assets/Kraken/turning_aggressive.png" id="3_8p3ua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xub06"]
+atlas = ExtResource("1_y8w0l")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7hrb"]
+atlas = ExtResource("1_y8w0l")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfro6"]
+atlas = ExtResource("1_y8w0l")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2wo2"]
+atlas = ExtResource("1_y8w0l")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hblwx"]
+atlas = ExtResource("1_ovu8g")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8w0l"]
+atlas = ExtResource("1_ovu8g")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p3ua"]
+atlas = ExtResource("1_ovu8g")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_550ax"]
+atlas = ExtResource("1_ovu8g")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pon41"]
+atlas = ExtResource("3_8p3ua")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw2jd"]
+atlas = ExtResource("3_8p3ua")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uupif"]
+atlas = ExtResource("3_8p3ua")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xub06"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xub06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7hrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfro6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2wo2")
+}],
+"loop": true,
+"name": &"aggresive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hblwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8w0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p3ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_550ax")
+}],
+"loop": true,
+"name": &"lurking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pon41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw2jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uupif")
+}],
+"loop": true,
+"name": &"turning_aggresive",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 300.0
 
 [node name="Kraken" type="Node2D"]
+script = ExtResource("1_kraken")
+obstacle_detection_distance = 2000.0
+max_search_depth = 24
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.89, 3.89)
+sprite_frames = SubResource("SpriteFrames_xub06")
+animation = &"lurking"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detect")

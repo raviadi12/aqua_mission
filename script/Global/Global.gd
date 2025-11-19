@@ -16,9 +16,27 @@ const SCENE_PATH : Dictionary = {
 	"lvl10" = "uid://dxmy655a6y017",
 }
 
+# Level Trash Requirements
+const LEVEL_TRASH_REQ : Dictionary = {
+	"lvl1" = 3,
+	"lvl2" = 5,
+	"lvl3" = 7,
+	"lvl4" = 8,
+	"lvl5" = 10,
+	"lvl6" = 12,
+	"lvl7" = 15,
+	"lvl8" = 18,
+	"lvl9" = 20,
+	"lvl10" = 25,
+}
+
+# Level configuration
+var total_trash_in_level: int = 0
+var is_furnace_burning: bool = false
+
 #Global Function
 func change_scene_to(node) -> void:
 	get_tree().change_scene_to_file(node)
 	HoldingItem.quantity_trash = 0
 	HoldingItem.quantity_trash_burned = 0
-	
+	total_trash_in_level = 0

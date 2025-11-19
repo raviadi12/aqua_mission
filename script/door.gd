@@ -15,5 +15,7 @@ func _ready():
 func _process(delta):
 	var target_y = open_y if is_open else closed_y
 	door_body.position.y = lerp(door_body.position.y, target_y, delta * 5.0)
-	if HoldingItem.quantity_trash == 4:
+	
+	# Open door when all trash in level is burned
+	if Global.total_trash_in_level > 0 and HoldingItem.quantity_trash_burned >= Global.total_trash_in_level:
 		is_open = true

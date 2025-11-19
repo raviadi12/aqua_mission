@@ -1,12 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk8vsp5hxrxsx"]
+[gd_scene load_steps=10 format=3 uid="uid://dk8vsp5hxrxsx"]
 
-[ext_resource type="Texture2D" uid="uid://d2boo0umjyqu7" path="res://assets/tornado-graphic-clipart-design-free-png.png" id="1_tdbyk"]
+[ext_resource type="Texture2D" uid="uid://dobl18nqcitd3" path="res://assets/Tornado/Tornado-sheet.png" id="1_jdjvc"]
 [ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="2_jdjvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxpou"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b5qk"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ing7"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5k1n"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucl2q"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xp5k"]
+atlas = ExtResource("1_jdjvc")
+region = Rect2(1000, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lnl52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxpou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b5qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ing7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5k1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucl2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xp5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_tdbyk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lnl52")
+frame = 4
+frame_progress = 0.39992058
 script = ExtResource("2_jdjvc")
-move_speed = 10.0
+speed_variation = 150.0
+wander_radius = 1500.0

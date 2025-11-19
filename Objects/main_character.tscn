@@ -1,10 +1,13 @@
-[gd_scene load_steps=96 format=3 uid="uid://cqqhadeage5s8"]
+[gd_scene load_steps=98 format=3 uid="uid://cqqhadeage5s8"]
 
 [ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
 [ext_resource type="Texture2D" uid="uid://chatkqdugnpyi" path="res://assets/Idle/east_idle.png" id="4_7yby0"]
 [ext_resource type="PackedScene" uid="uid://dinx1t8m00xma" path="res://Objects/inventory_display.tscn" id="4_dmq7t"]
+[ext_resource type="Script" uid="uid://cg8fy1xueql1e" path="res://scenes/2d_scenes/sub_viewport.gd" id="4_minimap"]
+[ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="5_timer"]
 [ext_resource type="Texture2D" uid="uid://d18jo4harwi50" path="res://assets/Idle/north_idle.png" id="5_j42gd"]
 [ext_resource type="Texture2D" uid="uid://ddjbh0fgnq053" path="res://assets/Idle/south_idle.png" id="5_jn65m"]
+[ext_resource type="PackedScene" uid="uid://ct5gvw2xrwt8l" path="res://scenes/UI_scenes/speedometer_hud.tscn" id="5_speedometer"]
 [ext_resource type="Texture2D" uid="uid://blew6x1vd5453" path="res://assets/Idle/north_east_idle.png" id="6_1hs6p"]
 [ext_resource type="Texture2D" uid="uid://12c5omerqep4" path="res://assets/Moving/moving_east.png" id="7_35x2e"]
 [ext_resource type="Texture2D" uid="uid://cbjoc5xq3rftm" path="res://assets/Idle/idle_south_west.png" id="7_42adl"]
@@ -651,11 +654,60 @@ position = Vector2(276, 86)
 shape = SubResource("CircleShape2D_ewcm5")
 
 [node name="ShipAnimation" type="AnimatedSprite2D" parent="."]
+visibility_layer = 1048577
 position = Vector2(277, 82)
 sprite_frames = SubResource("SpriteFrames_ewcm5")
-animation = &"Moving_South_west"
+animation = &"Moving_North_east"
 
 [node name="Item_displey" type="CanvasLayer" parent="."]
 
 [node name="Inventory_display" parent="Item_displey" instance=ExtResource("4_dmq7t")]
 position = Vector2(1062, 432)
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="TimerBar" parent="HUDLayer" instance=ExtResource("5_timer")]
+
+[node name="SpeedometerHUD" parent="HUDLayer" instance=ExtResource("5_speedometer")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -280.0
+offset_right = -220.0
+offset_bottom = -280.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MiniMapLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MiniMapLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+
+[node name="SubViewport" type="SubViewport" parent="MiniMapLayer/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+script = ExtResource("4_minimap")
+
+[node name="MiniMapWorld" type="Node2D" parent="MiniMapLayer/SubViewportContainer/SubViewport"]
+
+[node name="MiniMapCamera" type="Camera2D" parent="MiniMapLayer/SubViewportContainer/SubViewport/MiniMapWorld"]
+zoom = Vector2(0.12, 0.12)
+
+[node name="PlayerIcon" type="Sprite2D" parent="MiniMapLayer/SubViewportContainer/SubViewport/MiniMapWorld"]
+texture = ExtResource("4_7yby0")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+
+[node name="Line2D" type="Line2D" parent="MiniMapLayer/SubViewportContainer"]
+points = PackedVector2Array(0, 256, 256, 256, 256, 0, 0, 0)
+closed = true

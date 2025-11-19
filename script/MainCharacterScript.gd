@@ -4,7 +4,6 @@ extends CharacterBody2D
 var knockback: Vector2 = Vector2.ZERO
 var knockback_decay := 10.0  # how fast it fades away
 
-@onready var mini_menu = $Mini_menu/Mini_menu
 @onready var item_displey = $Item_displey
 @onready var ship_anim: AnimatedSprite2D = $ShipAnimation
 
@@ -12,60 +11,121 @@ var knockback_decay := 10.0  # how fast it fades away
 #character's variabel
 const MaxShipsSPEED = 200.0
 var acceleration = 2.0
-var currentVectorSpeed = Vector2(0,0)
+var deceleration = 5.0  # Faster deceleration for better stopping
+var last_facing := "South"
+
+var health: float = 100.0
 
 func _ready():
 	add_to_group("player")
 
 func update_animation():
-	# Very small movement → idle
-	if velocity.length() < 10:
-		# pick last direction you were facing (optional)
-		ship_anim.play("Idle_" + get_facing_direction())
+	if ship_anim == null:
 		return
-
-	# Moving → play movement animation
-	ship_anim.play("Moving_" + get_facing_direction())
+	
+	var direction := get_facing_direction()
+	
+	if velocity.length() < 10:
+		ship_anim.play(_safe_anim("Idle_", direction))
+	else:
+		ship_anim.play(_safe_anim("Moving_", direction))
 
 func get_facing_direction() -> String:
-	var dir = velocity.normalized()
+	if velocity.length() < 10:
+		return last_facing
+	
+	var dir := velocity.normalized()
+	var facing := ""
+	var flip_needed := false
+	
+	# Check diagonal directions first (more specific)
+	if dir.y < -0.3:  # Moving upward
+		if dir.x > 0.3:
+			# North-East
+			facing = "North_east"
+			flip_needed = false
+		elif dir.x < -0.3:
+			# North-West (use North_East flipped)
+			facing = "North_east"
+			flip_needed = true
+		else:
+			# North
+			facing = "North"
+			flip_needed = false
+	elif dir.y > 0.3:  # Moving downward
+		if dir.x > 0.3:
+			# South-East (use South_West flipped)
+			facing = "South_west"
+			flip_needed = true
+		elif dir.x < -0.3:
+			# South-West
+			facing = "South_west"
+			flip_needed = false
+		else:
+			# South
+			facing = "South"
+			flip_needed = false
+	else:  # Mostly horizontal
+		if dir.x > 0.2:
+			# East
+			facing = "East"
+			flip_needed = false
+		elif dir.x < -0.2:
+			# West (use East flipped)
+			facing = "East"
+			flip_needed = true
+		else:
+			# Not moving enough, keep last facing
+			return last_facing
+	
+	# Apply flip and update
+	ship_anim.flip_h = flip_needed
+	last_facing = facing
+	return facing
 
-	# Horizontal / vertical threshold
-	if dir.y < -0.5:
-		if dir.x > 0.5: return "North_East"
-		elif dir.x < -0.5: return "North_West"
-		else: return "North"
-	elif dir.y > 0.5:
-		if dir.x > 0.5: return "South_East"
-		elif dir.x < -0.5: return "South_West"
-		else: return "South"
-	else:
-		if dir.x > 0: return "East"
-		elif dir.x < 0: return "West"
-		else: return "South"  # fallback
+func _safe_anim(prefix: String, direction: String) -> String:
+	var candidate := prefix + direction
+	if ship_anim.sprite_frames and ship_anim.sprite_frames.has_animation(candidate):
+		return candidate
+	var fallback := prefix + last_facing
+	if ship_anim.sprite_frames and ship_anim.sprite_frames.has_animation(fallback):
+		return fallback
+	return prefix + "South"
 
 
 #Character Movement
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_vector("left", "right","up", "down")
+	var input_dir := Input.get_vector("left", "right", "up", "down")
 	
-	if direction != Vector2.ZERO:
-		currentVectorSpeed += Vector2(direction.x * acceleration, direction.y * acceleration)
+	# Handle X-axis movement
+	if input_dir.x != 0:
+		# Accelerate in the direction of input
+		velocity.x += input_dir.x * acceleration
 	else:
-		currentVectorSpeed -= Vector2(acceleration, acceleration)
-		currentVectorSpeed.x = max(currentVectorSpeed.x, 0)
-		currentVectorSpeed.y = max(currentVectorSpeed.y, 0)
-
-	velocity = currentVectorSpeed + knockback
-
+		# Decelerate when no X input
+		velocity.x = move_toward(velocity.x, 0, deceleration)
+	
+	# Handle Y-axis movement
+	if input_dir.y != 0:
+		# Accelerate in the direction of input
+		velocity.y += input_dir.y * acceleration
+	else:
+		# Decelerate when no Y input
+		velocity.y = move_toward(velocity.y, 0, deceleration)
+	
+	# Apply knockback
+	velocity += knockback
+	
+	# Clamp to max speed
 	velocity.x = clamp(velocity.x, -MaxShipsSPEED, MaxShipsSPEED)
 	velocity.y = clamp(velocity.y, -MaxShipsSPEED, MaxShipsSPEED)
 	
 	move_and_slide()
 
+	# Decay knockback
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_decay)
 
-	# ← NEW: update animation here
+	# Update animation
 	update_animation()
 
 
@@ -77,3 +137,17 @@ func _process(delta: float) -> void:
 		item_displey.visible = false
 
 #Mini_menu button function
+
+func take_damage(amount: float):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	print("Player died")
+	# Reset trash and furnace progress
+	HoldingItem.quantity_trash = 0
+	HoldingItem.quantity_trash_burned = 0
+	
+	# Reload current scene
+	get_tree().reload_current_scene()
