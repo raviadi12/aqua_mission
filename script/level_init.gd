@@ -27,7 +27,15 @@ func _on_level_complete():
 	is_level_finished = true
 	print("Level Complete!")
 	if level_complete_ui_instance:
-		level_complete_ui_instance.show_complete(HoldingItem.quantity_trash_burned, Global.total_trash_in_level)
+		# Get elapsed time from timer
+		var player = get_tree().get_first_node_in_group("player")
+		var elapsed_time = 0.0
+		if player:
+			var timer_node = player.get_node_or_null("HUDLayer/Timer")
+			if timer_node and timer_node.has_method("get_elapsed_time"):
+				elapsed_time = timer_node.get_elapsed_time()
+		
+		level_complete_ui_instance.show_complete(HoldingItem.quantity_trash_burned, Global.total_trash_in_level, elapsed_time)
 
 func _set_level_trash_goal():
 	var current_scene_path = get_tree().current_scene.scene_file_path

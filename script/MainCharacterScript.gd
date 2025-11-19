@@ -133,16 +133,16 @@ func _physics_process(_delta: float) -> void:
 	if granular_engine:
 		granular_engine.update_physics(velocity.length(), MaxShipsSPEED, get_process_delta_time())
 
-func _process(delta: float) -> void: 
+func _process(_delta: float) -> void: 
 	if HoldingItem.quantity_trash > 0 :
 		item_displey.visible = true
 	else :
 		item_displey.visible = false
 
-func update_pickup_ui(visible: bool, progress: float = 0.0, max_value: float = 1.0):
+func update_pickup_ui(show_ui: bool, progress: float = 0.0, max_value: float = 1.0):
 	if pickup_ui:
-		pickup_ui.visible = visible
-		if visible:
+		pickup_ui.visible = show_ui
+		if show_ui:
 			var bar = pickup_ui.get_node("ProgressBar")
 			if bar:
 				bar.max_value = max_value
@@ -160,6 +160,8 @@ func die():
 	# Reset trash and furnace progress
 	HoldingItem.quantity_trash = 0
 	HoldingItem.quantity_trash_burned = 0
+	Global.total_trash_in_level = 0
+	Global.is_furnace_burning = false
 	
 	# Reload current scene
 	get_tree().reload_current_scene()

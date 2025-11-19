@@ -1,8 +1,9 @@
-[gd_scene load_steps=101 format=3 uid="uid://cqqhadeage5s8"]
+[gd_scene load_steps=102 format=3 uid="uid://cqqhadeage5s8"]
 
 [ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
 [ext_resource type="Script" uid="uid://bush2h2e1vpmo" path="res://script/GranularEngine.gd" id="2_granular"]
 [ext_resource type="AudioStream" uid="uid://dvn0b5lva53wx" path="res://assets/Sound/cc205.wav" id="3_rbhd1"]
+[ext_resource type="FontFile" uid="uid://blv6cqyv65lrd" path="res://assets/Font Text/toxigenesis bd.otf" id="3_font"]
 [ext_resource type="Texture2D" uid="uid://chatkqdugnpyi" path="res://assets/Idle/east_idle.png" id="4_7yby0"]
 [ext_resource type="PackedScene" uid="uid://dinx1t8m00xma" path="res://Objects/inventory_display.tscn" id="4_dmq7t"]
 [ext_resource type="Script" uid="uid://cg8fy1xueql1e" path="res://scenes/2d_scenes/sub_viewport.gd" id="4_minimap"]
@@ -10,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ddjbh0fgnq053" path="res://assets/Idle/south_idle.png" id="5_jn65m"]
 [ext_resource type="PackedScene" uid="uid://ct5gvw2xrwt8l" path="res://scenes/UI_scenes/speedometer_hud.tscn" id="5_speedometer"]
 [ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="5_timer"]
+[ext_resource type="PackedScene" uid="uid://b8qv0p4y5xw2h" path="res://Objects/compass.tscn" id="6_compass"]
+[ext_resource type="Script" path="res://script/PopupManager.gd" id="7_popup_manager"]
 [ext_resource type="Texture2D" uid="uid://blew6x1vd5453" path="res://assets/Idle/north_east_idle.png" id="6_1hs6p"]
 [ext_resource type="Texture2D" uid="uid://12c5omerqep4" path="res://assets/Moving/moving_east.png" id="7_35x2e"]
 [ext_resource type="Texture2D" uid="uid://cbjoc5xq3rftm" path="res://assets/Idle/idle_south_west.png" id="7_42adl"]
@@ -638,7 +641,7 @@ animations = [{
 }]
 
 [node name="MainCharacter" type="CharacterBody2D"]
-process_mode = 3
+process_mode = 1
 z_index = 50
 script = ExtResource("1_wmkwl")
 
@@ -711,6 +714,12 @@ offset_bottom = -280.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Compass" parent="HUDLayer" instance=ExtResource("6_compass")]
+z_index = -1
+
+[node name="PopupManager" type="Node" parent="HUDLayer" groups=["popup_manager"]]
+script = ExtResource("7_popup_manager")
+
 [node name="PickupUI" type="Control" parent="HUDLayer"]
 visible = false
 layout_mode = 3
@@ -732,6 +741,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_font")
 text = "Picking Up Trash..."
 horizontal_alignment = 1
 
@@ -744,6 +754,42 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+show_percentage = false
+
+[node name="SonarPanel" type="Panel" parent="HUDLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -320.0
+offset_right = 170.0
+offset_bottom = -270.0
+grow_vertical = 0
+
+[node name="StatusRect" type="ColorRect" parent="HUDLayer/SonarPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="StatusLabel" type="Label" parent="HUDLayer/SonarPanel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 5.0
+offset_right = 140.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 12
+text = "Sonar Charging"
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HUDLayer/SonarPanel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 40.0
 show_percentage = false
 
 [node name="MiniMapLayer" type="CanvasLayer" parent="."]

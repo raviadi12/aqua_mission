@@ -26,6 +26,7 @@ enum State { LURKING, TURNING_AGGRESSIVE, CHASING }
 @export var path_update_interval: float = 0.2
 @export var max_search_depth: int = 12
 @export var beam_width: int = 5
+@export var debug_enabled: bool = false
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -261,6 +262,18 @@ func _process_chasing(delta: float) -> void:
 		_catch_player()
 
 func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Vector2:
+	var space_state = get_world_2d().direct_space_state
+	
+	# OPTIMIZATION: First check if we have a clear straight path to the target
+	# This avoids expensive pathfinding when unnecessary
+	if _has_clear_path_to_target(target, space_state):
+		# Clear path! Just go straight
+		active_path.clear()
+		debug_path_points.clear()
+		debug_candidate_points.clear()
+		is_blocked = false
+		return (target - global_position).normalized()
+	
 	# Path Following Logic
 	# We maintain an 'active_path' and only switch if a significantly better one is found.
 	
@@ -276,7 +289,14 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 	if _path_update_timer <= 0:
 		_path_update_timer = path_update_interval
 		
-		var space_state = get_world_2d().direct_space_state
+		# Check again before expensive pathfinding (target might have moved to clear view)
+		if _has_clear_path_to_target(target, space_state):
+			active_path.clear()
+			debug_path_points.clear()
+			debug_candidate_points.clear()
+			is_blocked = false
+			return (target - global_position).normalized()
+		
 		var max_depth = max_search_depth
 		var step_distance = body_radius * 2.0
 		
@@ -339,6 +359,34 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 		return along_wall
 		
 	return direct_dir
+
+func _has_clear_path_to_target(target: Vector2, space_state: PhysicsDirectSpaceState2D) -> bool:
+	# Check if there's a direct line of sight to the target with no obstacles
+	# Use raycast for quick check
+	var ray_params = PhysicsRayQueryParameters2D.create(global_position, target, obstacle_collision_mask)
+	var ray_result = space_state.intersect_ray(ray_params)
+	
+	if not ray_result.is_empty():
+		return false # Something is blocking
+	
+	# Also check with shape cast along the path to ensure body can fit
+	# Sample a few points along the path
+	var distance = global_position.distance_to(target)
+	var samples = max(3, int(distance / (body_radius * 2.0)))
+	var direction = (target - global_position).normalized()
+	
+	for i in range(1, samples + 1):
+		var check_dist = (distance * i) / samples
+		var check_pos = global_position + direction * check_dist
+		
+		query_params.shape.radius = body_radius
+		query_params.transform = Transform2D(0, check_pos)
+		var collisions = space_state.intersect_shape(query_params)
+		
+		if not collisions.is_empty():
+			return false # Body won't fit along this path
+	
+	return true # Clear path!
 
 func _find_path_beam_search(start_pos: Vector2, target: Vector2, max_depth: int, step_dist: float, space_state: PhysicsDirectSpaceState2D, initial_dir: Vector2) -> Dictionary:
 	# Beam Search Implementation

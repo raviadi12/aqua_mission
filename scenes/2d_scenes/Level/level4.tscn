@@ -1,19 +1,20 @@
 [gd_scene load_steps=22 format=4 uid="uid://sh14dt0yf76q"]
 
-[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_lvl6s"]
+[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_lvl6s"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_0v14u"]
-[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_e6c1u"]
+[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_e6c1u"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_n6vvy"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="6_e6c1u"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_g05e6"]
-[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="7_y7yd4"]
-[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="8_jgbbf"]
+[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="7_y7yd4"]
+[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="8_jgbbf"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_nkamy"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_7t01d"]
-[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="9_u6aye"]
-[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="10_xraah"]
-[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="11_lsk6o"]
+[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="9_u6aye"]
+[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="10_xraah"]
+[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="11_lsk6o"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="12_lsje7"]
+[ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7yd4"]
 size = Vector2(6032, 336)
@@ -37,6 +38,8 @@ size = Vector2(298.42114, 1278.9451)
 size = Vector2(189.21008, 1518.4033)
 
 [node name="Level4" type="Node2D"]
+script = ExtResource("1_levelinit")
+script = ExtResource("1_levelinit")
 
 [node name="TileMapOcean" parent="." instance=ExtResource("1_lvl6s")]
 position = Vector2(-1266, 51)

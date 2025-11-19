@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx3m2n8k4qwe"]
+
+[ext_resource type="PackedScene" uid="uid://c4j6h8m8k5qxy" path="res://scenes/UI_scenes/cutscene.tscn" id="1_base"]
+
+[sub_resource type="GDScript" id="GDScript_init"]
+script/source = "extends Node
+
+func _ready():
+	var cutscene = get_parent()
+	var messages = [
+		\"Ada sebuah patch sampah yang sangat besar di lautan Pasifik.\",
+		\"Misi kamu adalah membersihkan lautan dari sampah ini.\",
+		\"Mari kita mulai!\"
+	]
+	cutscene.setup(messages, Global.SCENE_PATH[\"lvl1\"])
+"
+
+[node name="Level1Intro" instance=ExtResource("1_base")]
+
+[node name="InitScript" type="Node" parent="." index="3"]
+script = SubResource("GDScript_init")

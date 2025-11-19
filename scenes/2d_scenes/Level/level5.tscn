@@ -1,18 +1,19 @@
-[gd_scene load_steps=24 format=4 uid="uid://dqfi2jr6nt861"]
+[gd_scene load_steps=25 format=4 uid="uid://dqfi2jr6nt861"]
 
-[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_ex0wx"]
+[ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
+[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_ex0wx"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_ch243"]
-[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_pwvob"]
+[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_pwvob"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="5_hwvys"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_nqxyo"]
-[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="6_fy7n5"]
-[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="7_lrm1f"]
+[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="6_fy7n5"]
+[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="7_lrm1f"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_wc274"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_28eli"]
-[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="8_phaq0"]
+[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="8_phaq0"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_a86xg"]
-[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="9_m5if8"]
-[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="10_fqsgc"]
+[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="9_m5if8"]
+[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="10_fqsgc"]
 [ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="12_1hqx1"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="13_2v88l"]
 
@@ -40,7 +41,8 @@ size = Vector2(7459.5, 531)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwvys"]
 size = Vector2(674, 4170.25)
 
-[node name="level5" type="Node2D"]
+[node name="Level5" type="Node2D"]
+script = ExtResource("1_levelinit")
 
 [node name="TileMapOcean" parent="." instance=ExtResource("1_ex0wx")]
 tile_map_data = PackedByteArray("AAD7//r/AAAAAAAAAAD7/wYAAAAAAAAAAAD7//n/AAAAAAAAAAAFAPn/AAAAAAAAAAAFAAYAAAAAAAAAAAAFAPr/AAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAADAAIAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAAAAAABAAMAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAADAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAIAAAABAAAAAAADAAYAAAABAAAAAAACAAUAAAABAAAAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD+/wYAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD7/wUAAAAAAAAAAAD9/wUAAAAAAAAAAAD7/wQAAAABAAAAAAD8/wQAAAABAAAAAAD8/wMAAAABAAAAAAD9/wMAAAABAAAAAAD+/wMAAAABAAAAAAD+/wQAAAABAAAAAAD9/wQAAAABAAAAAAD+/wUAAAABAAAAAAD7//v/AAAAAAAAAAD7//z/AAAAAAAAAAD7//3/AAAAAAAAAAD8//r/AAAAAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//n/AAABAAAAAAD9//n/AAABAAAAAAD+//n/AAABAAAAAAD///n/AAABAAAAAAAAAPn/AAABAAAAAAABAPn/AAABAAAAAAACAPn/AAABAAAAAAADAPn/AAABAAAAAAAEAPn/AAABAAAAAAD9//r/AAAAAAAAAAD9//v/AAAAAAAAAAD+//r/AAAAAAAAAAD+//v/AAAAAAAAAAD///r/AAAAAAAAAAD///v/AAAAAAAAAAAAAPr/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPr/AAAAAAAAAAABAPv/AAAAAAAAAAACAPr/AAAAAAAAAAACAPv/AAAAAAAAAAADAPr/AAABAAAAAAADAPv/AAABAAAAAAADAPz/AAABAAAAAAADAP3/AAABAAAAAAADAP7/AAABAAAAAAAEAPr/AAABAAAAAAAEAPv/AAABAAAAAAAEAPz/AAABAAAAAAAEAP3/AAABAAAAAAAEAP7/AAABAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD+//z/AAAAAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD///z/AAAAAAAAAAD///3/AAABAAAAAAD///7/AAABAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAABAAAAAAAAAP7/AAABAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAD/////AAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAAAAP//AAABAAAAAAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAADAP//AAABAAAAAAADAAAAAAABAAAAAAADAAEAAAABAAAAAAAEAP//AAABAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAABAAAAAAAAAAYAAAABAAAAAAABAAYAAAABAAAAAAACAAYAAAABAAAAAAADAAUAAAABAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD9/wAAAAABAAAAAAD9/wEAAAABAAAAAAD9/wIAAAABAAAAAAD+/wAAAAABAAAAAAD+/wEAAAABAAAAAAD+/wIAAAABAAAAAAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD+////AAABAAAAAAD9////AAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wMAAAABAAAAAAA=")

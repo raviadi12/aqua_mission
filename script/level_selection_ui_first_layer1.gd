@@ -4,7 +4,8 @@ func _ready():
 	AudioManager.connect_buttons(self)
 	
 func _on_lvl_1_pressed() -> void:
-	Global.change_scene_to(Global.SCENE_PATH.lvl1)
+	# Go to intro cutscene first for level 1
+	Global.change_scene_to(Global.SCENE_PATH.cutscene_level1)
 
 func _on_lvl_2_pressed() -> void:
 	Global.change_scene_to(Global.SCENE_PATH.lvl2)

@@ -3,6 +3,7 @@ extends Node
 var music_player: AudioStreamPlayer
 var sfx_player: AudioStreamPlayer
 var crane_player: AudioStreamPlayer
+var sonar_player: AudioStreamPlayer
 
 var menu_music = preload("res://assets/Sound/menu_music.mp3")
 var level_music = preload("res://assets/Sound/level_music.mp3")
@@ -10,6 +11,7 @@ var click_sound = preload("res://assets/Sound/button_click.mp3")
 var pluck_sound = preload("res://assets/Sound/Pluck.mp3")
 var crane_sound = preload("res://assets/Sound/crane_sound.mp3")
 var sonar_sound = preload("res://assets/Sound/sonar.mp3")
+var success_sound = preload("res://assets/Sound/success.mp3")
 
 var current_music_stream = null
 
@@ -24,6 +26,10 @@ func _ready():
 	sfx_player = AudioStreamPlayer.new()
 	sfx_player.bus = "Master" # Or "SFX"
 	add_child(sfx_player)
+	
+	sonar_player = AudioStreamPlayer.new()
+	sonar_player.bus = "Master"
+	add_child(sonar_player)
 	
 	crane_player = AudioStreamPlayer.new()
 	crane_player.bus = "Master"
@@ -61,7 +67,11 @@ func play_pluck():
 	sfx_player.play()
 
 func play_sonar():
-	sfx_player.stream = sonar_sound
+	sonar_player.stream = sonar_sound
+	sonar_player.play()
+
+func play_success():
+	sfx_player.stream = success_sound
 	sfx_player.play()
 
 func play_crane():

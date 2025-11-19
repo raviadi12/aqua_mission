@@ -8,6 +8,18 @@ signal time_expired
 var time_left: float
 
 func _ready():
+	# Determine current level key
+	var current_scene_path = get_tree().current_scene.scene_file_path
+	var level_key = ""
+	for key in Global.SCENE_PATH:
+		if Global.SCENE_PATH[key] == current_scene_path:
+			level_key = key
+			break
+	
+	# Set total_time from Global if available
+	if level_key in Global.LEVEL_TIMER_REQ:
+		total_time = float(Global.LEVEL_TIMER_REQ[level_key])
+
 	time_left = total_time
 	
 	# Set the progress bar values directly
@@ -29,6 +41,9 @@ func _process(delta: float):
 		
 		update_label()
 
+func get_elapsed_time() -> float:
+	return total_time - time_left
+
 func update_label():
 	if time_label:
 		var minutes = floor(time_left / 60)
@@ -44,5 +59,10 @@ func update_label():
 func _on_time_expired():
 	emit_signal("time_expired")
 	print("Time's up!")
+	# Reset trash and furnace progress
+	HoldingItem.quantity_trash = 0
+	HoldingItem.quantity_trash_burned = 0
+	Global.total_trash_in_level = 0
+	Global.is_furnace_burning = false
 	# Add game over logic here
 	get_tree().reload_current_scene()

@@ -12,6 +12,10 @@ var burn_delay = 1.0 # Time to burn one piece of trash
 var player: CharacterBody2D = null
 
 func _ready():
+	# Reset trash buffer to ensure clean state
+	trash_buffer = 0
+	burn_timer = 0.0
+	
 	if progress_indicator:
 		progress_indicator.visible = true # Always visible to show progress
 	if progress_bar:

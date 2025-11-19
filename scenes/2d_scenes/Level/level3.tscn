@@ -1,20 +1,20 @@
 [gd_scene load_steps=25 format=4 uid="uid://bmdfiakc0kql2"]
 
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_q18te"]
+[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_q18te"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_3s0pc"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_6f56f"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="5_p11i2"]
-[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="6_k6at8"]
+[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="6_k6at8"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_3gblx"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_ci5sp"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_h71h6"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="10_k6at8"]
-[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="11_a4snm"]
-[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="12_a12ln"]
-[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="13_o4i2f"]
-[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="14_s36wp"]
-[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="15_3ferw"]
+[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="11_a4snm"]
+[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="12_a12ln"]
+[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="13_o4i2f"]
+[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="14_s36wp"]
+[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="15_3ferw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6at8"]
 size = Vector2(174.73694, 1084.0336)
@@ -54,6 +54,7 @@ tile_map_data = PackedByteArray("AAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAA
 position = Vector2(183, -211)
 
 [node name="MainCharacter" parent="." instance=ExtResource("3_3s0pc")]
+process_mode = 3
 position = Vector2(-1907, -100)
 
 [node name="GameCamera" type="Camera2D" parent="MainCharacter"]

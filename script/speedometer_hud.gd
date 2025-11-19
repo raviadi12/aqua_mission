@@ -4,10 +4,10 @@ extends Control
 @onready var speed_label: Label = $SpeedometerPanel/SpeedLabel
 @onready var furnace_label: Label = $FurnaceStatus/Label
 
-# Sonar UI
-@onready var sonar_status_rect: ColorRect = $SonarPanel/StatusRect
-@onready var sonar_status_label: Label = $SonarPanel/StatusLabel
-@onready var sonar_progress: ProgressBar = $SonarPanel/ProgressBar
+# Sonar UI - Moved to MiniMapLayer
+# @onready var sonar_status_rect: ColorRect = $SonarPanel/StatusRect
+# @onready var sonar_status_label: Label = $SonarPanel/StatusLabel
+# @onready var sonar_progress: ProgressBar = $SonarPanel/ProgressBar
 
 var player: CharacterBody2D = null
 var minimap_script = null
@@ -18,6 +18,8 @@ var center_position: Vector2 = Vector2(75, 75)  # Center of the gauge
 var needle_length: float = 50.0
 var min_angle: float = 135.0  # Starting angle (bottom-left)
 var max_angle: float = 405.0   # Ending angle (bottom-right, via top)
+
+var furnace_node: Node2D = null
 
 func _ready():
 	# Find the player
@@ -38,6 +40,27 @@ func _ready():
 			if container:
 				minimap_script = container.get_node_or_null("SubViewport")
 	
+	# Find Furnace
+	var furnaces = get_tree().get_nodes_in_group("Furnace")
+	if furnaces.size() > 0:
+		furnace_node = furnaces[0]
+	else:
+		# Try finding by name in the level
+		if player:
+			var level = player.get_parent()
+			furnace_node = level.find_child("Furnace", true, false)
+			if not furnace_node:
+				furnace_node = level.find_child("furnace", true, false)
+	
+	if not furnace_node:
+		print("HUD: Furnace not found!")
+	else:
+		print("HUD: Furnace found at ", furnace_node.global_position)
+
+	# Modernize Sonar Progress Bar - Moved to sub_viewport.gd
+	# if sonar_progress:
+	# 	...
+
 	_setup_gauge_visuals()
 
 func _setup_gauge_visuals():
@@ -69,7 +92,7 @@ func _update_mark(line_node: Line2D, angle_deg: float):
 
 func _process(_delta: float) -> void:
 	_update_furnace_status()
-	_update_sonar_status()
+	# _update_sonar_status() # Moved to sub_viewport.gd
 	
 	if player == null:
 		return
@@ -93,23 +116,27 @@ func _process(_delta: float) -> void:
 	# Update needle
 	needle.points[1] = needle_end
 
-func _update_sonar_status():
-	if not minimap_script: return
-	
-	var cooldown = minimap_script.sonar_cooldown
-	var max_cooldown = minimap_script.sonar_cooldown_max
-	
-	if cooldown <= 0:
-		# Ready
-		sonar_status_rect.color = Color(0, 1, 0) # Green
-		sonar_status_label.text = "Sonar is Ready"
-		sonar_progress.value = 100
-	else:
-		# Charging
-		sonar_status_rect.color = Color(1, 0, 0) # Red
-		sonar_status_label.text = "Sonar is charging"
-		var pct = 1.0 - (cooldown / max_cooldown)
-		sonar_progress.value = pct * 100
+func _draw():
+	pass # Drawing moved to Compass.gd
+
+# func _update_sonar_status():
+# 	if not minimap_script: return
+# 	
+# 	var cooldown = minimap_script.sonar_cooldown
+# 	var max_cooldown = minimap_script.sonar_cooldown_max
+# 	
+# 	if cooldown <= 0:
+# 		# Ready
+# 		sonar_status_rect.color = Color(0, 1, 0) # Green
+# 		sonar_status_label.text = "Sonar is Ready"
+# 		sonar_progress.value = 100
+# 	else:
+# 		# Charging
+# 		sonar_status_rect.color = Color(1, 0, 0) # Red
+# 		sonar_status_label.text = "Sonar is charging"
+# 		if max_cooldown > 0:
+# 			sonar_progress.value = ((max_cooldown - cooldown) / max_cooldown) * 100
+# 		else:
 
 func _update_furnace_status():
 	if furnace_label:

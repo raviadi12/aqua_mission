@@ -88,3 +88,7 @@ func _complete_pickup() -> void:
 		
 	get_tree().queue_delete(trash)
 	HoldingItem.quantity_trash += 1
+	
+	var popup_manager = get_tree().get_first_node_in_group("popup_manager")
+	if popup_manager and popup_manager.has_method("check_variable_trigger"):
+		popup_manager.check_variable_trigger("HoldingItem.quantity_trash", HoldingItem.quantity_trash)

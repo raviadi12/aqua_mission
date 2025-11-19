@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ay7st2ur67"]
+
+[ext_resource type="PackedScene" uid="uid://c4j6h8m8k5qxy" path="res://scenes/UI_scenes/cutscene.tscn" id="1_base"]
+
+[sub_resource type="GDScript" id="GDScript_victory"]
+script/source = "extends Node
+
+func _ready():
+	var cutscene = get_parent()
+	var messages = [
+		\"Selamat!\",
+		\"Kamu telah berhasil membersihkan seluruh lautan dari sampah!\",
+		\"Misi selesai. Terima kasih telah bermain!\"
+	]
+	cutscene.setup(messages, Global.SCENE_PATH[\"main_menu\"])
+"
+
+[node name="VictoryCutscene" instance=ExtResource("1_base")]
+
+[node name="InitScript" type="Node" parent="." index="3"]
+script = SubResource("GDScript_victory")
