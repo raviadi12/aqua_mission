@@ -61,4 +61,5 @@ func _input(event: InputEvent) -> void:
 func _deposit_trash() -> void:
 	trash_buffer += HoldingItem.quantity_trash
 	HoldingItem.quantity_trash = 0
+	AudioManager.play_pluck()
 	print("Deposited trash. Buffer: ", trash_buffer)

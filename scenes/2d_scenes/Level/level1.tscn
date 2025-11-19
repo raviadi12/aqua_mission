@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://davbutwfeku6e"]
+[gd_scene load_steps=11 format=4 uid="uid://davbutwfeku6e"]
 
-[ext_resource type="Script" path="res://script/level_init.gd" id="1_levelinit"]
 [ext_resource type="PackedScene" uid="uid://csrep2t4f1vow" path="res://assets/tileMap/Ocean_tilemap.tscn" id="1_kl03y"]
+[ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_f58sa"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_21i5o"]
 [ext_resource type="PackedScene" uid="uid://lkt5cshdqy3n" path="res://scenes/2d_scenes/door.tscn" id="6_djg4s"]
@@ -28,7 +28,6 @@ limit_top = -10000
 limit_right = 10000
 limit_bottom = 10000
 
-
 [node name="Furnace" parent="." instance=ExtResource("5_21i5o")]
 position = Vector2(-75, -479)
 
@@ -46,6 +45,7 @@ script = ExtResource("9_acgkc")
 visible = false
 
 [node name="Trash" parent="." instance=ExtResource("8_0dsk5")]
+visible = false
 position = Vector2(176, -192)
 
 [node name="Trash2" parent="." instance=ExtResource("8_0dsk5")]
@@ -55,7 +55,7 @@ position = Vector2(728, -416)
 position = Vector2(-112, -184)
 
 [node name="Kraken" parent="." instance=ExtResource("9_85ip6")]
-position = Vector2(-128, 56)
+position = Vector2(-1024, 216)
 lurk_radius = 600.0
 
 [node name="Tornado" parent="." instance=ExtResource("10_dusa7")]

@@ -18,6 +18,15 @@ var cosine_amplitude: float
 
 func _ready():
 	play("default")
+	
+	# Add audio player
+	var audio = AudioStreamPlayer2D.new()
+	audio.stream = load("res://assets/Sound/tornado_wind.mp3")
+	audio.autoplay = true
+	audio.max_distance = 800 # Adjust as needed
+	audio.bus = "SFX" # Or Master
+	add_child(audio)
+	
 	spawn_position = global_position
 	
 	# Randomize movement parameters for unique behavior

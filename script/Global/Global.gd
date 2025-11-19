@@ -40,3 +40,15 @@ func change_scene_to(node) -> void:
 	HoldingItem.quantity_trash = 0
 	HoldingItem.quantity_trash_burned = 0
 	total_trash_in_level = 0
+	
+	# Determine music based on scene key
+	var key = ""
+	for k in SCENE_PATH:
+		if SCENE_PATH[k] == node:
+			key = k
+			break
+			
+	if key.begins_with("lvl") and key != "lvl_selection":
+		AudioManager.play_level_music()
+	else:
+		AudioManager.play_menu_music()

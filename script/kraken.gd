@@ -69,10 +69,16 @@ func _ready() -> void:
 	
 	# Connect detection area signal
 	if detection_area:
-		detection_area.body_entered.connect(_on_player_detected)
+		detection_area.body_entered.connect(_on_detection_area_body_entered)
 	
-	# Find all tornadoes in the scene
-	call_deferred("_find_tornadoes")
+	# Add audio player
+	var audio = AudioStreamPlayer2D.new()
+	audio.name = "AngrySound"
+	audio.stream = load("res://assets/Sound/kraken_angry.mp3")
+	audio.bus = "SFX"
+	add_child(audio)
+	
+	_find_tornadoes()
 
 func _setup_physics_query() -> void:
 	query_params = PhysicsShapeQueryParameters2D.new()
@@ -469,7 +475,7 @@ func _get_tornado_avoidance_direction() -> Vector2:
 	
 	return avoidance_direction.normalized() if avoidance_direction.length() > 0 else Vector2.ZERO
 
-func _on_player_detected(body: Node2D) -> void:
+func _on_detection_area_body_entered(body: Node2D) -> void:
 	if current_state == State.LURKING and body.is_in_group("player"):
 		player = body
 		_switch_to_turning_aggressive()
@@ -478,6 +484,10 @@ func _switch_to_turning_aggressive() -> void:
 	current_state = State.TURNING_AGGRESSIVE
 	anim.play("turning_aggresive")
 	is_moving = false
+	
+	var audio = get_node_or_null("AngrySound")
+	if audio and not audio.playing:
+		audio.play()
 	
 	# After animation duration, switch to chasing
 	# turning_aggressive has 3 frames at 5 fps = 0.6 seconds
@@ -493,6 +503,11 @@ func _return_to_lurking() -> void:
 	print("Kraken lost interest in player, returning to lurking")
 	current_state = State.LURKING
 	anim.play("lurking")
+	
+	var audio = get_node_or_null("AngrySound")
+	if audio:
+		audio.stop()
+		
 	player = null
 	_start_new_lurk_movement()
 

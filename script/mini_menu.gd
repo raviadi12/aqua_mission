@@ -1,6 +1,10 @@
 extends Control
 
 @onready var main_menu = $"."
+
+func _ready():
+	AudioManager.connect_buttons(self)
+
 func _on_resume_pressed() -> void:
 	main_menu.visible = !main_menu.visible
 

@@ -6,7 +6,8 @@ var knockback_decay := 10.0  # how fast it fades away
 
 @onready var item_displey = $Item_displey
 @onready var ship_anim: AnimatedSprite2D = $ShipAnimation
-
+@onready var granular_engine = $GranularEngine
+@onready var pickup_ui = $HUDLayer/PickupUI
 
 #character's variabel
 const MaxShipsSPEED = 200.0
@@ -127,14 +128,25 @@ func _physics_process(_delta: float) -> void:
 
 	# Update animation
 	update_animation()
-
-
+	
+	# Update Granular Engine Physics
+	if granular_engine:
+		granular_engine.update_physics(velocity.length(), MaxShipsSPEED, get_process_delta_time())
 
 func _process(delta: float) -> void: 
 	if HoldingItem.quantity_trash > 0 :
 		item_displey.visible = true
 	else :
 		item_displey.visible = false
+
+func update_pickup_ui(visible: bool, progress: float = 0.0, max_value: float = 1.0):
+	if pickup_ui:
+		pickup_ui.visible = visible
+		if visible:
+			var bar = pickup_ui.get_node("ProgressBar")
+			if bar:
+				bar.max_value = max_value
+				bar.value = progress
 
 #Mini_menu button function
 

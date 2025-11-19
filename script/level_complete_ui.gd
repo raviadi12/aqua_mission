@@ -7,6 +7,7 @@ extends CanvasLayer
 
 func _ready():
 	visible = false
+	AudioManager.connect_buttons(self)
 	
 func show_complete(burned: int, total: int):
 	visible = true

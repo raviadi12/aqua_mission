@@ -8,18 +8,12 @@ var movement_threshold = 20.0  # Max velocity to allow pickup
 
 @onready var press_E = $"Press[E]"
 @onready var trash = $"."
-@onready var progress_indicator = $PickupProgress
-@onready var progress_bar = $PickupProgress/ProgressBar
+# @onready var progress_indicator = $PickupProgress # Removed local UI
+# @onready var progress_bar = $PickupProgress/ProgressBar # Removed local UI
 
 var player: CharacterBody2D = null
 
 func _ready():
-	if progress_indicator:
-		progress_indicator.visible = false
-	if progress_bar:
-		progress_bar.max_value = pickup_delay
-		progress_bar.value = 0
-		
 	# Find player
 	player = get_tree().get_first_node_in_group("player")
 
@@ -33,8 +27,10 @@ func _process(delta: float) -> void:
 		
 		# Continue pickup timer
 		pickup_timer += delta
-		if progress_bar:
-			progress_bar.value = pickup_timer
+		
+		# Update Player UI
+		if player and player.has_method("update_pickup_ui"):
+			player.update_pickup_ui(true, pickup_timer, pickup_delay)
 		
 		if pickup_timer >= pickup_delay:
 			# Pickup complete
@@ -62,21 +58,33 @@ func _start_pickup() -> void:
 		
 	is_picking_up = true
 	pickup_timer = 0.0
-	if progress_indicator:
-		progress_indicator.visible = true
-	if progress_bar:
-		progress_bar.value = 0
+	
+	if player and player.has_method("update_pickup_ui"):
+		player.update_pickup_ui(true, 0.0, pickup_delay)
+		
 	if press_E:
 		press_E.visible = false
+	
+	AudioManager.play_crane()
 
 func _cancel_pickup() -> void:
 	is_picking_up = false
 	pickup_timer = 0.0
-	if progress_indicator:
-		progress_indicator.visible = false
+	
+	if player and player.has_method("update_pickup_ui"):
+		player.update_pickup_ui(false)
+		
 	if press_E and area_enter:
 		press_E.visible = true
+	
+	AudioManager.stop_crane()
 
 func _complete_pickup() -> void:
+	AudioManager.stop_crane()
+	AudioManager.play_pluck()
+	
+	if player and player.has_method("update_pickup_ui"):
+		player.update_pickup_ui(false)
+		
 	get_tree().queue_delete(trash)
 	HoldingItem.quantity_trash += 1

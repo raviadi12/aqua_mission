@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://script/Global/Global.gd"
 HoldingItem="*res://script/Global/Holding_item.gd"
+AudioManager="*res://script/AudioManager.gd"
 
 [display]
 
