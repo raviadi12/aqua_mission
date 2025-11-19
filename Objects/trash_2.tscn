@@ -1,21 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dktaeac8uww5d"]
+[gd_scene load_steps=7 format=3 uid="uid://s5j24u1q1bq6"]
 
-[ext_resource type="Script" uid="uid://7y8x2q0p5x0f" path="res://script/trash.gd" id="1_ix7n1"]
-[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="3_6dsr2"]
-[ext_resource type="Texture2D" uid="uid://ds3bktaa2nn47" path="res://assets/tileMap/asset_tilemap/Trash_sheets.png" id="3_ouqvo"]
+[ext_resource type="Script" uid="uid://7y8x2q0p5x0f" path="res://script/trash.gd" id="1_plmhf"]
+[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="2_kw3yk"]
+[ext_resource type="Texture2D" uid="uid://ds3bktaa2nn47" path="res://assets/tileMap/asset_tilemap/Trash_sheets.png" id="3_iecuv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ionjd"]
 radius = 80.00625
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tplsk"]
-atlas = ExtResource("3_ouqvo")
-region = Rect2(0, 0, 200, 200)
+atlas = ExtResource("3_iecuv")
+region = Rect2(431, 0.5, 143, 266)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dsr2"]
-size = Vector2(109, 55.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plmhf"]
+size = Vector2(79, 84)
 
 [node name="Trash" type="Node2D"]
-script = ExtResource("1_ix7n1")
+script = ExtResource("1_plmhf")
 
 [node name="Trash_area" type="Area2D" parent="."]
 collision_layer = 0
@@ -31,25 +31,26 @@ visible = false
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
-offset_top = -126.0
-offset_right = 40.0
-offset_bottom = -48.0
+offset_left = -5.0
+offset_top = -198.0
+offset_right = 35.0
+offset_bottom = -158.0
 
 [node name="Label" type="Label" parent="Press[E]"]
 layout_mode = 0
-offset_left = -65.0
-offset_top = 15.999996
-offset_right = 196.0
-offset_bottom = 49.999996
+offset_left = -58.999996
+offset_top = 29.999998
+offset_right = 202.0
+offset_bottom = 64.0
 scale = Vector2(0.48308468, 0.5673972)
 theme_type_variation = &"HeaderSmall"
-theme_override_fonts/font = ExtResource("3_6dsr2")
+theme_override_fonts/font = ExtResource("2_kw3yk")
 theme_override_font_sizes/font_size = 20
 text = "PRESS [P] TO PICK UP"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visibility_layer = 1048577
-position = Vector2(-1, -36)
+position = Vector2(-2, -15)
 texture = SubResource("AtlasTexture_tplsk")
 
 [node name="PickupProgress" type="Control" parent="."]
@@ -57,22 +58,22 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -30.0
-offset_top = -60.0
+offset_top = -150.0
 offset_right = 30.0
+offset_bottom = -90.0
 
 [node name="ProgressBar" type="ProgressBar" parent="PickupProgress"]
 layout_mode = 0
-offset_top = -26.0
 offset_right = 60.0
-offset_bottom = -16.0
+offset_bottom = 10.0
 max_value = 3.0
 show_percentage = false
 
 [node name="TrashBody" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashBody"]
-position = Vector2(1, 6)
-shape = SubResource("RectangleShape2D_6dsr2")
+position = Vector2(-1, -25)
+shape = SubResource("RectangleShape2D_plmhf")
 
 [connection signal="area_entered" from="Trash_area" to="." method="_on_trash_area_area_entered"]
 [connection signal="area_exited" from="Trash_area" to="." method="_on_trash_area_area_exited"]
