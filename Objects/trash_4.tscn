@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://crvd7p4w34je5"]
+
+[ext_resource type="Script" uid="uid://7y8x2q0p5x0f" path="res://script/trash.gd" id="1_wcuo2"]
+[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="2_5vje7"]
+[ext_resource type="Texture2D" uid="uid://ds3bktaa2nn47" path="res://assets/tileMap/asset_tilemap/Trash_sheets.png" id="3_qe4fy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ionjd"]
+radius = 80.00625
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tplsk"]
+atlas = ExtResource("3_qe4fy")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuo2"]
+size = Vector2(109, 19)
+
+[node name="Trash" type="Node2D"]
+script = ExtResource("1_wcuo2")
+
+[node name="Trash_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Trash\'sCollisionShape" type="CollisionShape2D" parent="Trash_area"]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("CircleShape2D_ionjd")
+
+[node name="Press[E]" type="Control" parent="."]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -152.0
+offset_right = 41.0
+offset_bottom = -112.0
+
+[node name="Label" type="Label" parent="Press[E]"]
+layout_mode = 0
+offset_left = -58.999996
+offset_top = 29.999998
+offset_right = 202.0
+offset_bottom = 64.0
+scale = Vector2(0.48308468, 0.5673972)
+theme_type_variation = &"HeaderSmall"
+theme_override_fonts/font = ExtResource("2_5vje7")
+theme_override_font_sizes/font_size = 20
+text = "PRESS [P] TO PICK UP"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 1048577
+position = Vector2(-1, -33)
+texture = SubResource("AtlasTexture_tplsk")
+
+[node name="PickupProgress" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -28.0
+offset_top = -100.0
+offset_right = 32.0
+offset_bottom = -40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="PickupProgress"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 10.0
+max_value = 3.0
+show_percentage = false
+
+[node name="TrashBody" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrashBody"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_wcuo2")
+
+[connection signal="area_entered" from="Trash_area" to="." method="_on_trash_area_area_entered"]
+[connection signal="area_exited" from="Trash_area" to="." method="_on_trash_area_area_exited"]

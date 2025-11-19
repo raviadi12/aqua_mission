@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ShipsGame"
-run/main_scene="uid://bn112riygqtb0"
+run/main_scene="uid://dqfi2jr6nt861"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

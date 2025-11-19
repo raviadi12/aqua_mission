@@ -639,6 +639,7 @@ animations = [{
 
 [node name="MainCharacter" type="CharacterBody2D"]
 process_mode = 3
+z_index = 50
 script = ExtResource("1_wmkwl")
 
 [node name="GranularEngine" type="Node" parent="."]
@@ -687,11 +688,15 @@ animation = &"Moving_North_east"
 [node name="Item_displey" type="CanvasLayer" parent="."]
 
 [node name="Inventory_display" parent="Item_displey" instance=ExtResource("4_dmq7t")]
-position = Vector2(1062, 432)
+position = Vector2(1746, 700)
 
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
 [node name="TimerBar" parent="HUDLayer" instance=ExtResource("5_timer")]
+offset_left = -865.0
+offset_top = 33.0
+offset_right = -609.0
+offset_bottom = 99.0
 
 [node name="SpeedometerHUD" parent="HUDLayer" instance=ExtResource("5_speedometer")]
 anchors_preset = 3
@@ -771,5 +776,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
 [node name="Line2D" type="Line2D" parent="MiniMapLayer/SubViewportContainer"]
+position = Vector2(-1.3113022e-06, -3.8550165)
+scale = Vector2(1, 1.0144926)
 points = PackedVector2Array(0, 256, 256, 256, 256, 0, 0, 0)
 closed = true
