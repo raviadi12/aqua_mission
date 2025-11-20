@@ -1,19 +1,19 @@
 [gd_scene load_steps=27 format=4 uid="uid://c832nqcb0ujh5"]
 
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_2xka5"]
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_2xka5"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_h11yl"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_kl0w8"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_kl0w8"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_ja2jt"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="5_qymos"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="6_t0txk"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="7_1bjsc"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="6_t0txk"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="7_1bjsc"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_8kvpb"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="8_h77nf"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="8_h77nf"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_om61y"]
-[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="9_tdmmq"]
+[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="9_tdmmq"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_ufn42"]
-[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="10_gk6ke"]
+[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="10_gk6ke"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="11_63te7"]
 [ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="12_s5jfq"]
 
@@ -102,16 +102,16 @@ position = Vector2(2114, 496)
 
 [node name="Trash23" parent="Trash" instance=ExtResource("5_qymos")]
 visible = false
-is_hidden_trash = true
 position = Vector2(2646, 860)
+is_hidden_trash = true
 
 [node name="Trash9" parent="Trash" instance=ExtResource("5_qymos")]
 position = Vector2(-3261, -1404)
 
 [node name="Trash13" parent="Trash" instance=ExtResource("5_qymos")]
 visible = false
-is_hidden_trash = true
 position = Vector2(-3359, -961)
+is_hidden_trash = true
 
 [node name="Trash17" parent="Trash" instance=ExtResource("5_qymos")]
 position = Vector2(2884, 1299)
@@ -127,8 +127,8 @@ position = Vector2(740, -1242)
 
 [node name="Trash27" parent="Trash" instance=ExtResource("5_qymos")]
 visible = false
-is_hidden_trash = true
 position = Vector2(169, -799)
+is_hidden_trash = true
 
 [node name="Trash14" parent="Trash" instance=ExtResource("5_qymos")]
 position = Vector2(821, 1817)
@@ -141,8 +141,8 @@ position = Vector2(-368, 1271)
 
 [node name="Trash29" parent="Trash" instance=ExtResource("5_qymos")]
 visible = false
-is_hidden_trash = true
 position = Vector2(65, 2138)
+is_hidden_trash = true
 
 [node name="Trash2" parent="Trash" instance=ExtResource("6_t0txk")]
 position = Vector2(-1736, 639)
@@ -170,8 +170,8 @@ position = Vector2(-2910, 200)
 
 [node name="Trash28" parent="Trash" instance=ExtResource("8_h77nf")]
 visible = false
-is_hidden_trash = true
 position = Vector2(-3432, 742)
+is_hidden_trash = true
 
 [node name="Trash8" parent="Trash" instance=ExtResource("8_h77nf")]
 position = Vector2(-2706, -2111)
@@ -181,8 +181,8 @@ position = Vector2(2606, 271)
 
 [node name="Trash26" parent="Trash" instance=ExtResource("8_h77nf")]
 visible = false
-is_hidden_trash = true
 position = Vector2(2035, -113)
+is_hidden_trash = true
 
 [node name="Trash5" parent="Trash" instance=ExtResource("9_tdmmq")]
 position = Vector2(-3579, 1372)

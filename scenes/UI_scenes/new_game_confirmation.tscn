@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyuxfh1ba82ey"]
+
+[ext_resource type="Script" path="res://script/new_game_confirmation.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://b7qdxqwl3fvgd" path="res://assets/main_theme.tres" id="2_theme"]
+
+[node name="NewGameConfirmation" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_type_variation = &"HeaderMedium"
+text = "Apakah kamu mau mulai dari awal?
+Semua progress kamu akan hilang"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="MarginBottom" type="MarginContainer" parent="Panel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBoxContainer/ButtonContainer/MarginBottom"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="YesButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer/MarginBottom/HBox"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+text = "Ya"
+
+[node name="NoButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer/MarginBottom/HBox"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+text = "Tidak"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonContainer/MarginBottom/HBox/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonContainer/MarginBottom/HBox/NoButton" to="." method="_on_no_button_pressed"]

@@ -1,5 +1,17 @@
 extends Node
 
+# Developer settings
+const DEVELOPER_MODE = false  # Set to true to unlock all levels
+const FRESH_START = false  # Set to true to reset progress every time game starts
+
+# Save file path
+const SAVE_FILE = "user://save_data.json"
+
+# Progress tracking
+var completed_levels: Array = []  # Array of completed level numbers (1-10)
+var highest_level_unlocked: int = 1  # Highest level player can access
+var sonar_unlocked: bool = false  # Unlocked after completing level 4
+
 #Global 
 const SCENE_PATH : Dictionary = {
 	"main_menu" = "res://scenes/UI_scenes/main_menu.tscn",
@@ -16,6 +28,7 @@ const SCENE_PATH : Dictionary = {
 	"lvl10" = "res://scenes/2d_scenes/Level/level10.tscn",
 	"cutscene_level1" = "res://scenes/UI_scenes/level1_intro.tscn",
 	"cutscene_victory" = "res://scenes/UI_scenes/victory_cutscene.tscn",
+	"game_over" = "res://scenes/UI_scenes/game_over_ui.tscn",
 }
 
 # Level Trash Requirements
@@ -38,12 +51,12 @@ const LEVEL_TIMER_REQ : Dictionary = {
 	"lvl2" = 180,
 	"lvl3" = 180,
 	"lvl4" = 210,
-	"lvl5" = 270,
-	"lvl6" = 330,
-	"lvl7" = 400,
-	"lvl8" = 460,
-	"lvl9" = 520,
-	"lvl10" = 600,
+	"lvl5" = 300,
+	"lvl6" = 360,
+	"lvl7" = 450,
+	"lvl8" = 540,
+	"lvl9" = 630,
+	"lvl10" = 720,
 }
 
 # Popup Data System
@@ -61,20 +74,6 @@ const LEVEL_POPUP_DATA = {
 			"trigger": {"type": "game_start"}
 		},
 		{
-			"id": "sonar_intro",
-			"text": [
-				"Sekarang, perhatikan sonar.", 
-				"Ini akan membantumu menemukan sampah.",
-				"Titik-titik putih pada sonar menunjukkan lokasi sampah.",
-				"Sonar ini sudah dikalibrasi dengan frekuensi khusus agar hanya mendeteksi sampah.",
-				"Tekan 'K' untuk menggunakan Sonar.",
-				"Sonar memiliki cooldown. Setelah siap, kamu bisa menggunakannya lagi."
-			],
-			"behavior": ["highlight_ui", "SonarPanel"],
-			"position": "top-right",
-			"trigger": {"type": "after_previous", "prev_id": "intro_1"}
-		},
-		{
 			"id": "trash_collect",
 			"text": [
 				"Ini adalah sampah yang harus kamu kumpulkan.",
@@ -82,7 +81,7 @@ const LEVEL_POPUP_DATA = {
 			],
 			"behavior": ["game_pause", "pan_camera", "Trash2"],
 			"position": "bottom-left",
-			"trigger": {"type": "after_previous", "prev_id": "sonar_intro"}
+			"trigger": {"type": "after_previous", "prev_id": "intro_1"}
 		},
 		{
 			"id": "furnace_intro",
@@ -103,16 +102,16 @@ const LEVEL_POPUP_DATA = {
 			"trigger": {"type": "after_previous", "prev_id": "furnace_intro"}
 		},
 		{
-			"id": "pyrolysis_explanation",
+			"id": "pyrolysis_fuel_info",
 			"text": [
-				"Tungku ini mengubah sampah menjadi bahan bakar melalui pirolisis.",
-				"Pirolisis adalah cara ramah lingkungan untuk daur ulang sampah.",
-				"Tungku dapat memilah plastik dan non-plastik secara otomatis.",
-				"Jadi kamu tidak perlu khawatir tentang pemilahan!"
+				"Sampah sedang diproses! Ini bukan pembakaran biasa.",
+				"Biasanya tidak semua sampah bisa dibakar, tapi kita menggunakan teknologi Pirolisis.",
+				"Tungku ini memilah dan mengubah sampah menjadi bahan bakar untuk kapal kita.",
+				"Jadi kita membersihkan laut sekaligus mengisi energi kapal kita untuk level selanjutnya!"
 			],
 			"behavior": ["game_pause"],
-			"position": "bottom-right",
-			"trigger": {"type": "after_previous", "prev_id": "furnace_intro2"}
+			"position": "center",
+			"trigger": {"type": "on_variable_above", "variable": "HoldingItem.quantity_trash_burned", "value": 0}
 		},
 		{
 			"id": "trash_pickup_info",
@@ -163,13 +162,26 @@ const LEVEL_POPUP_DATA = {
 			"id": "level4_intro",
 			"text": [
 				"Kita baru saja dapat kabar bahwa ada tumpukan sampah di sini yang tenggelam ke dasar laut.",
-				"Untungnya, sonar kita sudah disetel ulang untuk area ini.",
-				"Frekuensi sonar telah ditingkatkan agar dapat mendeteksi sampah yang tenggelam.",
-				"Kamu bisa melihatnya di peta sonar seperti biasa. Selamat bekerja!"
+				"Untungnya, kapal kita baru saja dipasangi Sonar!",
+				"Frekuensi sonar telah disetel untuk mendeteksi sampah yang tenggelam."
 			],
 			"behavior": ["game_pause"],
 			"position": "center",
 			"trigger": {"type": "game_start"}
+		},
+		{
+			"id": "sonar_intro",
+			"text": [
+				"Sekarang, perhatikan sonar.", 
+				"Ini akan membantumu menemukan sampah.",
+				"Titik-titik putih pada sonar menunjukkan lokasi sampah.",
+				"Sonar ini sudah dikalibrasi dengan frekuensi khusus agar hanya mendeteksi sampah.",
+				"Tekan 'K' untuk menggunakan Sonar.",
+				"Sonar memiliki cooldown. Setelah siap, kamu bisa menggunakannya lagi."
+			],
+			"behavior": ["highlight_ui", "SonarPanel"],
+			"position": "top-right",
+			"trigger": {"type": "after_previous", "prev_id": "level4_intro"}
 		}
 	]
 }
@@ -180,6 +192,21 @@ var is_furnace_burning: bool = false
 
 func _ready():
 	get_tree().debug_collisions_hint = false
+	
+	# Fresh start mode - reset progress every time
+	if FRESH_START:
+		reset_progress()
+		return
+	
+	load_game()
+	
+	# Developer mode - unlock all levels
+	if DEVELOPER_MODE:
+		highest_level_unlocked = 10
+		sonar_unlocked = true
+		for i in range(1, 11):
+			if not completed_levels.has(i):
+				completed_levels.append(i)
 
 #Global Function
 func change_scene_to(node) -> void:
@@ -202,3 +229,74 @@ func change_scene_to(node) -> void:
 		AudioManager.play_menu_music()  # Cutscenes use menu music
 	else:
 		AudioManager.play_menu_music()
+
+# Save/Load System
+func save_game():
+	var save_data = {
+		"completed_levels": completed_levels,
+		"highest_level_unlocked": highest_level_unlocked,
+		"sonar_unlocked": sonar_unlocked
+	}
+	
+	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(save_data))
+		file.close()
+		print("Game saved successfully")
+	else:
+		print("Failed to save game")
+
+func load_game():
+	if not FileAccess.file_exists(SAVE_FILE):
+		# New game - start fresh
+		completed_levels = []
+		highest_level_unlocked = 1
+		return
+	
+	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	if file:
+		var json_string = file.get_as_text()
+		file.close()
+		
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		
+		if parse_result == OK:
+			var save_data = json.data
+			completed_levels = save_data.get("completed_levels", [])
+			highest_level_unlocked = save_data.get("highest_level_unlocked", 1)
+			sonar_unlocked = save_data.get("sonar_unlocked", false)
+			print("Game loaded successfully")
+		else:
+			print("Failed to parse save file")
+			completed_levels = []
+			highest_level_unlocked = 1
+	else:
+		print("Failed to load game")
+		completed_levels = []
+		highest_level_unlocked = 1
+
+func complete_level(level_number: int):
+	# Mark level as completed
+	if not completed_levels.has(level_number):
+		completed_levels.append(level_number)
+	
+	# Unlock next level
+	if level_number < 10:
+		highest_level_unlocked = max(highest_level_unlocked, level_number + 1)
+	
+	save_game()
+
+func is_level_completed(level_number: int) -> bool:
+	return completed_levels.has(level_number)
+
+func is_level_unlocked(level_number: int) -> bool:
+	if DEVELOPER_MODE:
+		return true
+	return level_number <= highest_level_unlocked
+
+func reset_progress():
+	completed_levels = []
+	highest_level_unlocked = 1
+	sonar_unlocked = false
+	save_game()

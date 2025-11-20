@@ -40,22 +40,6 @@ func _initialize_popups():
 		current_level_data = Global.LEVEL_POPUP_DATA[level_key]
 		print("PopupManager: Loaded data for ", level_key, " with ", current_level_data.size(), " popups")
 		
-		# Count how many game_pause popups will spawn at game_start
-		var pause_needed = false
-		for data in current_level_data:
-			var trigger = data.get("trigger", {})
-			if trigger.get("type") == "game_start":
-				var behaviors = data.get("behavior", [])
-				if "game_pause" in behaviors:
-					print("PopupManager: Found game_start popup with pause: ", data.get("id"))
-					pause_needed = true
-					# Don't break - we need to count all
-		
-		# Pause immediately if needed
-		if pause_needed:
-			print("PopupManager: PAUSING GAME NOW")
-			request_pause()
-		
 		# Now spawn the popups
 		call_deferred("_check_triggers", "game_start")
 	else:
@@ -84,8 +68,17 @@ func check_variable_trigger(variable_name: String, value: float):
 	_check_triggers("on_variable_above", {"variable": variable_name, "value": value})
 
 func _spawn_popup(data: Dictionary):
-	if data["id"] in completed_popups:
+	if data["id"] in completed_popups or data["id"] in active_popups:
 		return
+	
+	# Mark as active immediately to prevent double spawning
+	active_popups.append(data["id"])
+	
+	# Check if we need to pause
+	var behaviors = data.get("behavior", [])
+	if "game_pause" in behaviors:
+		print("PopupManager: Pausing for popup ", data["id"])
+		request_pause()
 	
 	# Defer creation to avoid "parent busy" errors during _ready
 	call_deferred("_create_popup_nodes", data)
@@ -95,6 +88,7 @@ func _create_popup_nodes(data: Dictionary):
 	# Add to a CanvasLayer to ensure it's on top of everything
 	var canvas = CanvasLayer.new()
 	canvas.layer = 100 # High layer
+	canvas.process_mode = Node.PROCESS_MODE_ALWAYS # Ensure popup works when game is paused
 	
 	if get_tree() and get_tree().current_scene:
 		get_tree().current_scene.add_child(canvas)
@@ -103,11 +97,12 @@ func _create_popup_nodes(data: Dictionary):
 		popup.setup(data)
 		popup.popup_closed.connect(_on_popup_closed.bind(canvas))
 		
-		active_popups.append(data["id"])
+		# active_popups.append(data["id"]) # Already added in _spawn_popup
 	else:
 		# Cleanup if failed
 		canvas.queue_free()
 		popup.queue_free()
+		active_popups.erase(data["id"]) # Remove if failed to spawn
 
 func _on_popup_closed(popup_id: String, canvas_layer: CanvasLayer):
 	active_popups.erase(popup_id)

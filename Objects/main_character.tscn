@@ -741,7 +741,7 @@ anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_font")
-text = "Picking Up Trash..."
+text = "Mengambil Sampah..."
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="HUDLayer/PickupUI"]
@@ -780,7 +780,7 @@ offset_top = 5.0
 offset_right = 140.0
 offset_bottom = 30.0
 theme_override_font_sizes/font_size = 12
-text = "Sonar Charging"
+text = "Sonar Mengisi"
 vertical_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="HUDLayer/SonarPanel"]

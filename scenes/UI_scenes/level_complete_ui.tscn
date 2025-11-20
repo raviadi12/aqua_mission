@@ -33,7 +33,7 @@ offset_right = 100.0
 offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
-text = "LEVEL COMPLETE!"
+text = "LEVEL SELESAI!"
 horizontal_alignment = 1
 
 [node name="SummaryLabel" type="Label" parent="Panel"]
@@ -73,12 +73,12 @@ alignment = 1
 [node name="NextButton" type="Button" parent="Panel/ButtonContainer"]
 custom_minimum_size = Vector2(170, 50)
 layout_mode = 2
-text = "Next Level"
+text = "Level Berikutnya"
 
 [node name="MenuButton" type="Button" parent="Panel/ButtonContainer"]
 custom_minimum_size = Vector2(170, 50)
 layout_mode = 2
-text = "Main Menu"
+text = "Menu Utama"
 
 [connection signal="pressed" from="Panel/ButtonContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Panel/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]

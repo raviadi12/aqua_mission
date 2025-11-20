@@ -612,5 +612,11 @@ func _return_to_lurking() -> void:
 
 func _catch_player() -> void:
 	print("Kraken caught the player! Game Over!")
-	# End the level - you can customize this
-	get_tree().reload_current_scene()
+	
+	# Find the level_init node which has the game over UI
+	var level_init = get_tree().get_first_node_in_group("level_init")
+	if level_init and level_init.has_method("show_game_over"):
+		level_init.show_game_over(1)  # 1 = CAUGHT_BY_KRAKEN
+	else:
+		# Fallback: reload scene
+		get_tree().reload_current_scene()
