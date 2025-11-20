@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dobl18nqcitd3" path="res://assets/Tornado/Tornado-sheet.png" id="1_jdjvc"]
 [ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="2_jdjvc"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_collision"]
+radius = 80.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxpou"]
 atlas = ExtResource("1_jdjvc")
 region = Rect2(0, 0, 200, 200)
@@ -53,23 +56,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdjvc"]
-size = Vector2(33, 18)
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("2_jdjvc")
 
-[node name="Node2D" type="Node2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_collision")
 
-[node name="Tornado" type="CharacterBody2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tornado"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lnl52")
 frame = 4
 frame_progress = 0.39992058
-script = ExtResource("2_jdjvc")
-speed_variation = 150.0
-wander_radius = 1500.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado"]
-light_mask = 8
-visibility_layer = 8
-position = Vector2(-5.5, 87)
-shape = SubResource("RectangleShape2D_jdjvc")

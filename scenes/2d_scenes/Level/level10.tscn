@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dxmy655a6y017"]
+[gd_scene load_steps=32 format=4 uid="uid://dxmy655a6y017"]
 
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
 [ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_trys8"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="9_w0o82"]
 [ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="10_m7le2"]
 [ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="12_sjnoj"]
+[ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="13_t3h2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2g1w"]
 size = Vector2(1341.1992, 151.1081)
@@ -263,9 +264,11 @@ position = Vector2(-420, -1415)
 
 [node name="Tornado" parent="." instance=ExtResource("9_s2rxa")]
 position = Vector2(-1378, 918)
+script = ExtResource("13_t3h2e")
 
 [node name="Tornado2" parent="." instance=ExtResource("9_s2rxa")]
 position = Vector2(573, -1207)
+script = ExtResource("13_t3h2e")
 
 [node name="Kraken" parent="." instance=ExtResource("12_sjnoj")]
 position = Vector2(-693, 1728)
