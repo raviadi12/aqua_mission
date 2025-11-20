@@ -2,7 +2,7 @@ extends Node
 
 # Developer settings
 const DEVELOPER_MODE = false  # Set to true to unlock all levels
-const FRESH_START = false  # Set to true to reset progress every time game starts
+const FRESH_START = true  # Set to true to reset progress every time game starts
 
 # Save file path
 const SAVE_FILE = "user://save_data.json"
