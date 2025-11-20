@@ -1,0 +1,125 @@
+[gd_scene load_steps=24 format=3 uid="uid://doac12axf5utw"]
+
+[ext_resource type="PackedScene" uid="uid://cy8ide76c10pt" path="res://scenes/UI_scenes/level_selection_ui_firstLayer.tscn" id="1_0yxni"]
+[ext_resource type="Script" uid="uid://mcmmfhs1fkd5" path="res://script/lvl_selection.gd" id="1_6maxc"]
+[ext_resource type="Texture2D" uid="uid://d4bl4uh5ntaj0" path="res://assets/Background/Level_Selection.png" id="2_l2j5v"]
+[ext_resource type="Script" uid="uid://c5x2ajf5xdlvw" path="res://script/LayerSwitch.gd" id="2_q2mhq"]
+[ext_resource type="PackedScene" uid="uid://c2ctl4yd6mqkm" path="res://scenes/UI_scenes/level_selection_ui_secondLayer.tscn" id="4_7rd1l"]
+[ext_resource type="Texture2D" uid="uid://b6xe3ub8tao03" path="res://assets/Button/Menu.png" id="4_xe8yi"]
+[ext_resource type="Texture2D" uid="uid://cq5c1r1ae87ow" path="res://assets/Button/NEXT.png" id="7_mcm1u"]
+[ext_resource type="Texture2D" uid="uid://deevqqf1hbbsp" path="res://assets/Button/BACK.png" id="8_yqvgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0542p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llugh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fl4y3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xtxt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxifw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5ocv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2ydw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ca4u6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86c3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6c3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78g3e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjhqd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxcb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hcvs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0djdl"]
+
+[node name="Lvl_selection" type="Node2D"]
+script = ExtResource("1_6maxc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 3840.0
+offset_bottom = 1080.0
+texture = ExtResource("2_l2j5v")
+
+[node name="Lvl_camera" type="Camera2D" parent="."]
+scale = Vector2(0.99999994, 1)
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+script = ExtResource("2_q2mhq")
+
+[node name="MainMenu" type="Button" parent="Lvl_camera"]
+offset_left = 60.000008
+offset_top = 66.0
+offset_right = 260.0
+offset_bottom = 131.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0542p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_llugh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fl4y3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3xtxt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wxifw")
+icon = ExtResource("4_xe8yi")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Level_selection_ui_FirstLayer" parent="." instance=ExtResource("1_0yxni")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 75.0
+offset_bottom = 75.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Level_selection_ui_secondLayer" parent="." instance=ExtResource("4_7rd1l")]
+offset_left = 2024.0002
+offset_top = 71.0
+offset_right = 2024.0002
+offset_bottom = 71.0
+
+[node name="LayerSwitchAdvance" type="Button" parent="."]
+offset_left = 1607.0
+offset_top = 939.0
+offset_right = 1807.0
+offset_bottom = 1004.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e5ocv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j2ydw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ca4u6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_86c3f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s6c3y")
+icon = ExtResource("7_mcm1u")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="LayerSwitchBack" type="Button" parent="."]
+offset_left = 2041.0
+offset_top = 940.0
+offset_right = 2245.0
+offset_bottom = 1006.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_78g3e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bjhqd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ipxcb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6hcvs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0djdl")
+icon = ExtResource("8_yqvgs")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Lvl_camera/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="LayerSwitchAdvance" to="Lvl_camera" method="_on_layer_switch_advance_pressed"]
+[connection signal="pressed" from="LayerSwitchBack" to="Lvl_camera" method="_on_layer_switch_back_pressed"]

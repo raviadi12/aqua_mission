@@ -1,6 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2ctl4yd6mqkm"]
+[gd_scene load_steps=32 format=3 uid="uid://c2ctl4yd6mqkm"]
 
 [ext_resource type="Script" uid="uid://cqnivxi2uby0x" path="res://script/level_selection_ui_first_layer1.gd" id="1_m2and"]
+[ext_resource type="Texture2D" uid="uid://dgese34mq8r5s" path="res://assets/Button/6.png" id="2_37abq"]
+[ext_resource type="Texture2D" uid="uid://cjssl8jxhxx68" path="res://assets/Button/7.png" id="3_r6eve"]
+[ext_resource type="Texture2D" uid="uid://shw3t32hwtuf" path="res://assets/Button/8.png" id="4_kkoqj"]
+[ext_resource type="Texture2D" uid="uid://d14ahjyf6vpt4" path="res://assets/Button/9.png" id="5_wqswq"]
+[ext_resource type="Texture2D" uid="uid://bq88mc1ma16er" path="res://assets/Button/10.png" id="6_rhjf3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_883lw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwks1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d6jhn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_adlbh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s4oyo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5owmp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76ios"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8kma"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x871y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k8lrj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rp1x8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv0c6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0pc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7d4f7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0wwv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0t836"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ks0b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vayiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjyfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vs8qh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ybtwu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odlt8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0e06g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6maa2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uekmm"]
 
 [node name="Level_selection_ui" type="Control"]
 layout_mode = 3
@@ -15,52 +80,92 @@ script = ExtResource("1_m2and")
 [node name="Lvl6" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 100.128296
-offset_top = 130.7499
-offset_right = 220.1283
-offset_bottom = 250.7499
+offset_left = 109.05062
+offset_top = 239.86491
+offset_right = 229.05063
+offset_bottom = 359.86493
 scale = Vector2(1, 1.003011)
-text = "Lvl 6"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_883lw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uwks1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_d6jhn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_adlbh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s4oyo")
+icon = ExtResource("2_37abq")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Lvl7" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 493.7019
-offset_top = 239.865
-offset_right = 613.7019
-offset_bottom = 359.865
+offset_left = 428.2715
+offset_top = 355.56445
+offset_right = 548.2715
+offset_bottom = 475.56445
 scale = Vector2(1, 1.003011)
-text = "Lvl 7"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5owmp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_76ios")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n8kma")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_x871y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k8lrj")
+icon = ExtResource("3_r6eve")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Lvl8" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 393.57364
-offset_top = 559.6847
-offset_right = 513.5736
-offset_bottom = 679.6847
+offset_left = 789.12994
+offset_top = 530.5248
+offset_right = 909.12994
+offset_bottom = 650.5248
 scale = Vector2(1, 1.003011)
-text = "Lvl 8"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rp1x8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xv0c6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x0pc1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7d4f7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k0wwv")
+icon = ExtResource("4_kkoqj")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Lvl9" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 878.3532
-offset_top = 707.36633
-offset_right = 998.3532
-offset_bottom = 827.36633
+offset_left = 1133.1351
+offset_top = 381.9026
+offset_right = 1253.1351
+offset_bottom = 501.9026
 scale = Vector2(1, 1.003011)
-text = "Lvl 9"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0t836")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ks0b")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vayiq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tjyfj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vs8qh")
+icon = ExtResource("5_wqswq")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Lvl10" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 1385.9342
-offset_top = 711.12885
-offset_right = 1505.9342
-offset_bottom = 831.12885
+offset_left = 1573.3031
+offset_top = 406.3594
+offset_right = 1693.3031
+offset_bottom = 526.3594
 scale = Vector2(1, 1.003011)
-text = "Lvl 10"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ybtwu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_odlt8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0e06g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6maa2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uekmm")
+icon = ExtResource("6_rhjf3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="Lvl6" to="." method="_on_lvl_6_pressed"]
 [connection signal="pressed" from="Lvl7" to="." method="_on_lvl_7_pressed"]

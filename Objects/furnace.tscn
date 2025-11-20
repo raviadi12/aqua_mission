@@ -1,11 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://emtmjwq7om05"]
+[gd_scene load_steps=10 format=3 uid="uid://emtmjwq7om05"]
 
 [ext_resource type="Script" uid="uid://bnmqm2yefx4ve" path="res://script/furnace.gd" id="1_5e7u4"]
 [ext_resource type="Texture2D" uid="uid://c7fb677okjyh6" path="res://assets/my-first-pixelart-drawing-its-a-furnace-for-my-automation-v0-649yya5jzf1e1-removebg-preview.png" id="2_6y41g"]
 [ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="3_6y41g"]
+[ext_resource type="Texture2D" uid="uid://svrjcnfsbqbs" path="res://assets/Pirolisis dan platform.png" id="4_g8m4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8m4t"]
 radius = 207.87015
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl2nk"]
+atlas = ExtResource("4_g8m4t")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic1dd"]
+atlas = ExtResource("4_g8m4t")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6rvp"]
+atlas = ExtResource("4_g8m4t")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_580vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl2nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6rvp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="Furnace" type="Node2D"]
 script = ExtResource("1_5e7u4")
@@ -16,11 +46,6 @@ collision_mask = 4
 
 [node name="Area_Furnace_Collision" type="CollisionShape2D" parent="Area_Furnace"]
 shape = SubResource("CircleShape2D_g8m4t")
-
-[node name="Furnace_Sprite" type="Sprite2D" parent="."]
-position = Vector2(1.999999, 4)
-scale = Vector2(0.39698365, 0.38137254)
-texture = ExtResource("2_6y41g")
 
 [node name="Press[O]" type="Control" parent="."]
 visible = false
@@ -64,6 +89,11 @@ texture_under = ExtResource("2_6y41g")
 texture_progress = ExtResource("2_6y41g")
 tint_under = Color(1, 1, 1, 0)
 tint_progress = Color(1, 0.5, 0, 0.8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_580vb")
+autoplay = "default"
+frame_progress = 0.6176984
 
 [connection signal="area_entered" from="Area_Furnace" to="." method="_on_area_furnace_area_entered"]
 [connection signal="area_exited" from="Area_Furnace" to="." method="_on_area_furnace_area_exited"]

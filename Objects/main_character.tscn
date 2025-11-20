@@ -1,9 +1,9 @@
-[gd_scene load_steps=102 format=3 uid="uid://cqqhadeage5s8"]
+[gd_scene load_steps=104 format=3 uid="uid://cqqhadeage5s8"]
 
 [ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
 [ext_resource type="Script" uid="uid://bush2h2e1vpmo" path="res://script/GranularEngine.gd" id="2_granular"]
+[ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="3_font"]
 [ext_resource type="AudioStream" uid="uid://dvn0b5lva53wx" path="res://assets/Sound/cc205.wav" id="3_rbhd1"]
-[ext_resource type="FontFile" uid="uid://blv6cqyv65lrd" path="res://assets/Font Text/toxigenesis bd.otf" id="3_font"]
 [ext_resource type="Texture2D" uid="uid://chatkqdugnpyi" path="res://assets/Idle/east_idle.png" id="4_7yby0"]
 [ext_resource type="PackedScene" uid="uid://dinx1t8m00xma" path="res://Objects/inventory_display.tscn" id="4_dmq7t"]
 [ext_resource type="Script" uid="uid://cg8fy1xueql1e" path="res://scenes/2d_scenes/sub_viewport.gd" id="4_minimap"]
@@ -11,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://ddjbh0fgnq053" path="res://assets/Idle/south_idle.png" id="5_jn65m"]
 [ext_resource type="PackedScene" uid="uid://ct5gvw2xrwt8l" path="res://scenes/UI_scenes/speedometer_hud.tscn" id="5_speedometer"]
 [ext_resource type="PackedScene" uid="uid://cxcdox5lo02e5" path="res://Objects/timer.tscn" id="5_timer"]
-[ext_resource type="PackedScene" uid="uid://b8qv0p4y5xw2h" path="res://Objects/compass.tscn" id="6_compass"]
-[ext_resource type="Script" path="res://script/PopupManager.gd" id="7_popup_manager"]
 [ext_resource type="Texture2D" uid="uid://blew6x1vd5453" path="res://assets/Idle/north_east_idle.png" id="6_1hs6p"]
+[ext_resource type="PackedScene" uid="uid://b8qv0p4y5xw2h" path="res://Objects/compass.tscn" id="6_compass"]
 [ext_resource type="Texture2D" uid="uid://12c5omerqep4" path="res://assets/Moving/moving_east.png" id="7_35x2e"]
 [ext_resource type="Texture2D" uid="uid://cbjoc5xq3rftm" path="res://assets/Idle/idle_south_west.png" id="7_42adl"]
+[ext_resource type="Script" uid="uid://bx6tm5gj1cyy5" path="res://script/PopupManager.gd" id="7_popup_manager"]
 [ext_resource type="Texture2D" uid="uid://daqcc1jst00kt" path="res://assets/Moving/moving_north.png" id="8_mg880"]
 [ext_resource type="Texture2D" uid="uid://bv1yyk5h85ji0" path="res://assets/Moving/moving_north_east.png" id="9_0losh"]
 [ext_resource type="Texture2D" uid="uid://p2i8rksg21ea" path="res://assets/Moving/moving_south.png" id="10_cxovy"]
@@ -721,7 +721,6 @@ z_index = -1
 script = ExtResource("7_popup_manager")
 
 [node name="PickupUI" type="Control" parent="HUDLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

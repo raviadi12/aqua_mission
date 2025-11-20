@@ -3,7 +3,7 @@ extends Node
 #Global 
 const SCENE_PATH : Dictionary = {
 	"main_menu" = "res://scenes/UI_scenes/main_menu.tscn",
-	"lvl_selection" = "res://scenes/2d_scenes/lvl_selection.tscn",
+	"lvl_selection" = "res://scenes/UI_scenes/lvl_selection.tscn",
 	"lvl1" = "res://scenes/2d_scenes/Level/level1.tscn",
 	"lvl2" = "res://scenes/2d_scenes/Level/level2.tscn",
 	"lvl3" = "res://scenes/2d_scenes/Level/level3.tscn",
