@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://7srls5j0gqyi"]
+
+[ext_resource type="Texture2D" uid="uid://do0aon4xag38b" path="res://assets/Sprite-0003.png" id="1_ef32v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tax4s"]
+texture = ExtResource("1_ef32v")
+texture_region_size = Vector2i(500, 500)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gkx8v"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_tax4s")
+
+[node name="WasteWater" type="TileMapLayer"]
+tile_set = SubResource("TileSet_gkx8v")

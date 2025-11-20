@@ -1,20 +1,20 @@
 [gd_scene load_steps=19 format=4 uid="uid://dinipiddvcki8"]
 
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_nuqqq"]
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_nuqqq"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="3_asa7v"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_ltg1p"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_tle01"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="6_mmo7y"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="6_mmo7y"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="7_osf6p"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_w5any"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="8_ntus6"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="8_ntus6"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_pkh50"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="9_jnj5l"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="10_m5vgq"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="9_jnj5l"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="10_m5vgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmo7y"]
-size = Vector2(128, 936)
+size = Vector2(128, 1335)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osf6p"]
 size = Vector2(143, 890.5)
@@ -60,10 +60,15 @@ position = Vector2(15, 1256)
 rotation = 3.1590762
 texture = ExtResource("3_asa7v")
 
+[node name="TrashWall2" type="Sprite2D" parent="TrashWall"]
+position = Vector2(10, 654)
+rotation = 0.04256797
+texture = ExtResource("3_asa7v")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="TrashWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
-position = Vector2(20, -30)
+position = Vector2(20, 169.5)
 shape = SubResource("RectangleShape2D_mmo7y")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
@@ -85,7 +90,7 @@ position = Vector2(-3506.5, -886.75)
 shape = SubResource("RectangleShape2D_m5vgq")
 
 [node name="TrashPile" parent="." instance=ExtResource("6_mmo7y")]
-tile_map_data = PackedByteArray("AADu//v/AAAAAAAAAAAOAPr/AAAAAAAAAAAPAP3/AAABAAAAAAAPAP//AAABAAAAAADt/wAAAAABAAAAAADz/wAAAAABAAAAAADy////AAABAAAAAAD1//r/AAABAAAAAAD2//z/AAABAAAAAAD3/wAAAAABAAAAAAD6/wEAAAABAAAAAAAKAAEAAAABAAAAAAAFAAEAAAABAAAAAAAAAAEAAAABAAAAAAAJAPv/AAACAAAAAAAEAPv/AAAAAAAAAAD9//v/AAAAAAAAAAD7//r/AAAAAAAAAADw/wEAAAAAAAAAAADt/wEAAAAAAAAAAAD1/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAAMAAEAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AADz/wAAAAABAAAAAADy////AAABAAAAAAD2//z/AAABAAAAAAD3/wAAAAABAAAAAAD6/wEAAAABAAAAAAAKAAEAAAABAAAAAAAFAAEAAAABAAAAAAAAAAEAAAABAAAAAAAJAPv/AAACAAAAAAAEAPv/AAAAAAAAAAD9//v/AAAAAAAAAADw/wEAAAAAAAAAAAD1/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAAMAAEAAAAAAAAAAAAOAPv/AAABAAAAAAD7//3/AAABAAAAAADy//v/AAAAAAAAAAD5//z/AAAAAAAAAADt//v/AAABAAAAAADt/wAAAAABAAAAAADu/wEAAAABAAAAAAAOAAAAAAABAAAAAAAOAAEAAAABAAAAAAAsAAEAAAABAAAAAAAtABEAAAABAAAAAAAuABkAAAABAAAAAAAtAB0AAAABAAAAAAAsAO7/AAABAAAAAAAsAOH/AAABAAAAAAAtAOz/AAACAAAAAAAtAOf/AAACAAAAAAA=")
 
 [node name="wall_collision" type="CharacterBody2D" parent="TrashPile"]
 

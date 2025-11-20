@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dinx1t8m00xma"]
+[gd_scene load_steps=6 format=3 uid="uid://dinx1t8m00xma"]
 
 [ext_resource type="Script" uid="uid://dasipc11aprxi" path="res://script/inventory_display.gd" id="1_c76je"]
+[ext_resource type="Texture2D" uid="uid://b0rh681iu2vs" path="res://assets/Backgorund_item1.png" id="2_bjnan"]
 [ext_resource type="FontFile" uid="uid://bkdi44swjm0sp" path="res://assets/Font Text/toxigenesis bd.otf" id="2_don6c"]
-[ext_resource type="Texture2D" uid="uid://b1ltxybk35kr4" path="res://assets/trashBag.png" id="3_don6c"]
+[ext_resource type="Texture2D" uid="uid://22ik1fxmxcgw" path="res://assets/Backgorund_item2.png" id="4_ucfqd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydywp"]
 
 [node name="Inventory_display" type="Node2D"]
 script = ExtResource("1_c76je")
@@ -13,26 +16,26 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Inventory_display_UI_background" type="ColorRect" parent="Inventory_display_UI"]
+[node name="TextureRect" type="TextureRect" parent="Inventory_display_UI"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 80.0
-offset_bottom = 72.0
+offset_right = 82.0
+offset_bottom = 75.0
+texture = ExtResource("2_bjnan")
 
 [node name="Inventory_display_UI_item_quantity" type="Label" parent="Inventory_display_UI"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 53.0
-offset_right = 88.0
-offset_bottom = 73.0
+offset_left = 41.0
+offset_top = 45.0
+offset_right = 87.0
+offset_bottom = 75.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_don6c")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ydywp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TrashBag" type="Sprite2D" parent="."]
-position = Vector2(42, 34)
-scale = Vector2(0.1105, 0.10949999)
-texture = ExtResource("3_don6c")
+position = Vector2(29, 39)
+scale = Vector2(1.102125, 1.1328751)
+texture = ExtResource("4_ucfqd")

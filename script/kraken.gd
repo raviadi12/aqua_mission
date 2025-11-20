@@ -26,7 +26,6 @@ enum State { LURKING, TURNING_AGGRESSIVE, CHASING }
 @export var path_update_interval: float = 0.2
 @export var max_search_depth: int = 12
 @export var beam_width: int = 5
-@export var debug_enabled: bool = false
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea

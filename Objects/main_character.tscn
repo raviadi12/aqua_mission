@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://cqqhadeage5s8"]
+[gd_scene load_steps=108 format=3 uid="uid://cqqhadeage5s8"]
 
 [ext_resource type="Script" uid="uid://d237ghtmtgnpj" path="res://script/MainCharacterScript.gd" id="1_wmkwl"]
 [ext_resource type="Script" uid="uid://bush2h2e1vpmo" path="res://script/GranularEngine.gd" id="2_granular"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bv1yyk5h85ji0" path="res://assets/Moving/moving_north_east.png" id="9_0losh"]
 [ext_resource type="Texture2D" uid="uid://p2i8rksg21ea" path="res://assets/Moving/moving_south.png" id="10_cxovy"]
 [ext_resource type="Texture2D" uid="uid://ckd72tmvaeb17" path="res://assets/Moving/moving_south_west.png" id="11_rbhd1"]
+[ext_resource type="Texture2D" uid="uid://o4qtlbfrnw1h" path="res://assets/Timer.png" id="15_mjmt8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q423"]
 size = Vector2(51, 52.5)
@@ -640,6 +641,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e8cx"]
+atlas = ExtResource("15_mjmt8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmcj7"]
+atlas = ExtResource("15_mjmt8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vguov"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e8cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmcj7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="MainCharacter" type="CharacterBody2D"]
 process_mode = 1
 z_index = 50
@@ -684,22 +707,28 @@ shape = SubResource("CircleShape2D_ewcm5")
 
 [node name="ShipAnimation" type="AnimatedSprite2D" parent="."]
 visibility_layer = 1048577
-position = Vector2(277, 82)
+position = Vector2(286, 79)
 sprite_frames = SubResource("SpriteFrames_ewcm5")
 animation = &"Moving_North_east"
 
 [node name="Item_displey" type="CanvasLayer" parent="."]
 
 [node name="Inventory_display" parent="Item_displey" instance=ExtResource("4_dmq7t")]
-position = Vector2(1746, 700)
+position = Vector2(1740, 705.00006)
+scale = Vector2(1.3820671, 1.4265158)
 
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
+[node name="Stopwatch_UI" type="AnimatedSprite2D" parent="HUDLayer"]
+position = Vector2(64, 56)
+sprite_frames = SubResource("SpriteFrames_vguov")
+autoplay = "default"
+
 [node name="TimerBar" parent="HUDLayer" instance=ExtResource("5_timer")]
-offset_left = -865.0
-offset_top = 33.0
-offset_right = -609.0
-offset_bottom = 99.0
+offset_left = -841.0
+offset_top = 26.0
+offset_right = -287.0
+offset_bottom = 91.0
 
 [node name="SpeedometerHUD" parent="HUDLayer" instance=ExtResource("5_speedometer")]
 anchors_preset = 3
@@ -721,6 +750,7 @@ z_index = -1
 script = ExtResource("7_popup_manager")
 
 [node name="PickupUI" type="Control" parent="HUDLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

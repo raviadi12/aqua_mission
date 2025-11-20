@@ -1,35 +1,35 @@
 [gd_scene load_steps=25 format=4 uid="uid://bmdfiakc0kql2"]
 
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_q18te"]
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="2_q18te"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_3s0pc"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_6f56f"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="5_p11i2"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="6_k6at8"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="6_k6at8"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_3gblx"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_ci5sp"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_h71h6"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="10_k6at8"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="11_a4snm"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="12_a12ln"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="13_o4i2f"]
-[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="14_s36wp"]
-[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="15_3ferw"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="11_a4snm"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="12_a12ln"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="13_o4i2f"]
+[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="14_s36wp"]
+[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="15_3ferw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6at8"]
-size = Vector2(174.73694, 1084.0336)
+size = Vector2(174.73694, 1480.0417)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4snm"]
 size = Vector2(123.15808, 1092.1848)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a12ln"]
-size = Vector2(6032, 785.647)
+size = Vector2(4260.2104, 785.647)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4i2f"]
-size = Vector2(7459.5, 531)
+size = Vector2(4580.2764, 531)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s36wp"]
-size = Vector2(674, 4170.25)
+size = Vector2(674, 3381.3435)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlwmv"]
 size = Vector2(980, 358)
@@ -77,7 +77,7 @@ skew = -7.355213e-05
 texture = ExtResource("5_p11i2")
 
 [node name="TrashWall" type="Sprite2D" parent="TrashWall"]
-position = Vector2(15, 1256)
+position = Vector2(6.315789, 896.0085)
 rotation = 3.1590762
 texture = ExtResource("5_p11i2")
 
@@ -89,29 +89,39 @@ texture = ExtResource("5_p11i2")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="TrashWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
-position = Vector2(32.63086, -82.98309)
+light_mask = 9
+visibility_layer = 9
+position = Vector2(32.630615, 115.02118)
 shape = SubResource("RectangleShape2D_k6at8")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
+light_mask = 9
+visibility_layer = 9
 position = Vector2(25.789429, 1348.8655)
 shape = SubResource("RectangleShape2D_a4snm")
 
 [node name="Batas_boarder" type="CharacterBody2D" parent="TrashWall/CharacterBody2D/CollisionShape2D2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashWall/CharacterBody2D/CollisionShape2D2/Batas_boarder"]
-position = Vector2(-1226.842, 894.79834)
+light_mask = 9
+visibility_layer = 9
+position = Vector2(-2112.7368, 894.79834)
 shape = SubResource("RectangleShape2D_a12ln")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="TrashWall/CharacterBody2D/CollisionShape2D2/Batas_boarder"]
-position = Vector2(-724.7369, -2236.4705)
+light_mask = 9
+visibility_layer = 9
+position = Vector2(-2164.3486, -2236.4705)
 shape = SubResource("RectangleShape2D_o4i2f")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="TrashWall/CharacterBody2D/CollisionShape2D2/Batas_boarder"]
-position = Vector2(-4451.0527, -22.184874)
+light_mask = 9
+visibility_layer = 9
+position = Vector2(-4451.0527, -416.63812)
 shape = SubResource("RectangleShape2D_s36wp")
 
 [node name="TrashPile" parent="." instance=ExtResource("6_k6at8")]
-tile_map_data = PackedByteArray("AAD0/wEAAAAAAAAAAAD0/wQAAAAAAAAAAADz/wUAAAAAAAAAAADw/wkAAAABAAAAAADU/wkAAAACAAAAAADV/w8AAAAAAAAAAADV/xMAAAAAAAAAAADW/xMAAAABAAAAAADV/xcAAAAAAAAAAADW/xcAAAABAAAAAADU/x0AAAABAAAAAADY/x8AAAABAAAAAADk/xUAAAACAAAAAADe/xkAAAACAAAAAAD1/wsAAAACAAAAAAD0/xEAAAAAAAAAAAD0/xcAAAAAAAAAAAD1/xcAAAABAAAAAAD0/x0AAAAAAAAAAAD1/x0AAAABAAAAAAD7/x4AAAABAAAAAAD//x8AAAABAAAAAAABAB4AAAABAAAAAAADAB4AAAABAAAAAAAIAB4AAAABAAAAAAAHACAAAAABAAAAAAACACEAAAABAAAAAAD8/yAAAAABAAAAAAD2/yAAAAABAAAAAADZ/wkAAAABAAAAAADf/wkAAAACAAAAAADc/w8AAAACAAAAAADa/xQAAAACAAAAAADg/w8AAAACAAAAAADf/xMAAAACAAAAAADk/wkAAAABAAAAAADq/wkAAAABAAAAAADm/w8AAAABAAAAAADs/w4AAAABAAAAAADx/w8AAAABAAAAAADv/xUAAAABAAAAAADq/xQAAAABAAAAAADv/xsAAAABAAAAAADv/yEAAAACAAAAAADa/xsAAAACAAAAAADj/xoAAAABAAAAAADp/xoAAAABAAAAAADn/xsAAAABAAAAAADr/yAAAAABAAAAAADl/yIAAAAAAAAAAADg/yAAAAAAAAAAAADc/yIAAAAAAAAAAADW/yMAAAAAAAAAAAD0/+P/AAAAAAAAAAD0/9//AAABAAAAAAD3/+T/AAACAAAAAAAOAOT/AAACAAAAAAANAN7/AAAAAAAAAAAOAOD/AAABAAAAAAD9/+T/AAABAAAAAAAJAOT/AAABAAAAAAAKAOT/AAACAAAAAAACAOT/AAABAAAAAAADAOT/AAACAAAAAAAJAN7/AAABAAAAAAAKAN7/AAACAAAAAAAHAN7/AAABAAAAAAAIAN7/AAACAAAAAAACAN7/AAABAAAAAAADAN7/AAACAAAAAAD9/97/AAAAAAAAAAD5/97/AAAAAAAAAAD0/9z/AAAAAAAAAAD5/9v/AAAAAAAAAAABANr/AAAAAAAAAAALANr/AAAAAAAAAAAMANr/AAAAAAAAAAAGANr/AAAAAAAAAAD0/+T/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD0/wEAAAAAAAAAAAD0/wQAAAAAAAAAAADz/wUAAAAAAAAAAADw/wkAAAABAAAAAADV/w8AAAAAAAAAAADV/xMAAAAAAAAAAADW/xMAAAABAAAAAADV/xcAAAAAAAAAAADW/xcAAAABAAAAAADU/x0AAAABAAAAAADY/x8AAAABAAAAAADk/xUAAAACAAAAAADe/xkAAAACAAAAAAD1/wsAAAACAAAAAAD0/xEAAAAAAAAAAAD0/xcAAAAAAAAAAAD1/xcAAAABAAAAAAD0/x0AAAAAAAAAAAD1/x0AAAABAAAAAAD7/x4AAAABAAAAAAD//x8AAAABAAAAAAABAB4AAAABAAAAAAADAB4AAAABAAAAAAAIAB4AAAABAAAAAAAHACAAAAABAAAAAAACACEAAAABAAAAAAD8/yAAAAABAAAAAAD2/yAAAAABAAAAAADZ/wkAAAABAAAAAADf/wkAAAACAAAAAADc/w8AAAACAAAAAADa/xQAAAACAAAAAADg/w8AAAACAAAAAADf/xMAAAACAAAAAADk/wkAAAABAAAAAADq/wkAAAABAAAAAADm/w8AAAABAAAAAADs/w4AAAABAAAAAADx/w8AAAABAAAAAADv/xUAAAABAAAAAADq/xQAAAABAAAAAADv/xsAAAABAAAAAADv/yEAAAACAAAAAADa/xsAAAACAAAAAADj/xoAAAABAAAAAADp/xoAAAABAAAAAADn/xsAAAABAAAAAADr/yAAAAABAAAAAADl/yIAAAAAAAAAAADg/yAAAAAAAAAAAADc/yIAAAAAAAAAAADW/yMAAAAAAAAAAAD3/+T/AAACAAAAAAAOAOT/AAACAAAAAAANAN7/AAAAAAAAAAAOAOD/AAABAAAAAAD9/+T/AAABAAAAAAAJAOT/AAABAAAAAAAKAOT/AAACAAAAAAACAOT/AAABAAAAAAADAOT/AAACAAAAAAAJAN7/AAABAAAAAAAKAN7/AAACAAAAAAAHAN7/AAABAAAAAAAIAN7/AAACAAAAAAACAN7/AAABAAAAAAADAN7/AAACAAAAAAD9/97/AAAAAAAAAAD5/97/AAAAAAAAAAD5/9v/AAAAAAAAAAABANr/AAAAAAAAAAALANr/AAAAAAAAAAAMANr/AAAAAAAAAAAGANr/AAAAAAAAAADV/wkAAAABAAAAAAD1/9z/AAABAAAAAAD1/+H/AAABAAAAAAD1/+T/AAABAAAAAAAHAOD/AAABAAAAAADu/woAAAABAAAAAAD1/wkAAAABAAAAAAA0APD/AAABAAAAAAA1AP//AAABAAAAAAA2AAwAAAAAAAAAAAA2ABYAAAAAAAAAAAA1ABwAAAAAAAAAAAA=")
 
 [node name="wall_collision" type="CharacterBody2D" parent="TrashPile"]
 
@@ -128,6 +138,8 @@ position = Vector2(42, 1009)
 shape = SubResource("RectangleShape2D_8h6tq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="TrashPile/wall_collision"]
+light_mask = 8
+visibility_layer = 8
 position = Vector2(-389, 88)
 shape = SubResource("RectangleShape2D_gi5mv")
 
@@ -167,7 +179,7 @@ position = Vector2(86, -682)
 position = Vector2(20, 713)
 
 [node name="Tornado" parent="." instance=ExtResource("9_h71h6")]
-position = Vector2(1039, -566)
+position = Vector2(-179, -174)
 
 [node name="Mini_menu" type="CanvasLayer" parent="."]
 layer = 5

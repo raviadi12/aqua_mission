@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk8vsp5hxrxsx"]
+[gd_scene load_steps=11 format=3 uid="uid://dk8vsp5hxrxsx"]
 
 [ext_resource type="Texture2D" uid="uid://dobl18nqcitd3" path="res://assets/Tornado/Tornado-sheet.png" id="1_jdjvc"]
 [ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="2_jdjvc"]
@@ -53,12 +53,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdjvc"]
+size = Vector2(33, 18)
+
 [node name="Node2D" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Tornado" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tornado"]
 sprite_frames = SubResource("SpriteFrames_lnl52")
 frame = 4
 frame_progress = 0.39992058
 script = ExtResource("2_jdjvc")
 speed_variation = 150.0
 wander_radius = 1500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado"]
+light_mask = 8
+visibility_layer = 8
+position = Vector2(-5.5, 87)
+shape = SubResource("RectangleShape2D_jdjvc")

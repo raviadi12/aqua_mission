@@ -1,20 +1,21 @@
-[gd_scene load_steps=22 format=4 uid="uid://sh14dt0yf76q"]
+[gd_scene load_steps=24 format=4 uid="uid://sh14dt0yf76q"]
 
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_lvl6s"]
+[ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_lvl6s"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_0v14u"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_e6c1u"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_e6c1u"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_n6vvy"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="6_e6c1u"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_g05e6"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="7_y7yd4"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="8_jgbbf"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="7_y7yd4"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="8_jgbbf"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_nkamy"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_7t01d"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="9_u6aye"]
-[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="10_xraah"]
-[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="11_lsk6o"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="9_u6aye"]
+[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="10_xraah"]
+[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="11_lsk6o"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="12_lsje7"]
-[ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
+[ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="13_y7yd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7yd4"]
 size = Vector2(6032, 336)
@@ -35,10 +36,9 @@ size = Vector2(1165, 769)
 size = Vector2(298.42114, 1278.9451)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6c1u"]
-size = Vector2(189.21008, 1518.4033)
+size = Vector2(189.21008, 1920.9664)
 
 [node name="Level4" type="Node2D"]
-script = ExtResource("1_levelinit")
 script = ExtResource("1_levelinit")
 
 [node name="TileMapOcean" parent="." instance=ExtResource("1_lvl6s")]
@@ -75,7 +75,7 @@ limit_bottom = 1384
 [node name="TrashPile" parent="." instance=ExtResource("4_e6c1u")]
 z_index = 11
 position = Vector2(-2312, -94)
-tile_map_data = PackedByteArray("AAALAB8AAAABAAAAAAAkAB8AAAAAAAAAAAAjACYAAAAAAAAAAAAfACIAAAAAAAAAAAAfAB8AAAABAAAAAAAVACAAAAABAAAAAAARACEAAAABAAAAAAAOACUAAAABAAAAAAAKACQAAAABAAAAAAALACsAAAABAAAAAAAYACUAAAABAAAAAAAaACAAAAACAAAAAAAdACcAAAACAAAAAAAjACoAAAACAAAAAAAlACQAAAACAAAAAAAmACoAAAACAAAAAAAlAC8AAAACAAAAAAAeAC0AAAACAAAAAAAUACsAAAABAAAAAAASACYAAAABAAAAAAAYACoAAAABAAAAAAANAC8AAAABAAAAAAAJAC4AAAABAAAAAAAJACgAAAABAAAAAAAJACQAAAABAAAAAAARACoAAAAAAAAAAAATADAAAAAAAAAAAAAaADAAAAAAAAAAAAAeADEAAAAAAAAAAAALADEAAAAAAAAAAAASADIAAAAAAAAAAAAbADIAAAAAAAAAAAAjADMAAAAAAAAAAAASAB8AAAAAAAAAAAAYAB8AAAAAAAAAAAA+ANr/AAAAAAAAAABNANv/AAAAAAAAAABQAN//AAAAAAAAAABEAOH/AAAAAAAAAAA9AOL/AAAAAAAAAAA5AN//AAAAAAAAAAA6ANv/AAAAAAAAAABIAN3/AAAAAAAAAABEANr/AAAAAAAAAABYANj/AAABAAAAAABYAN7/AAABAAAAAABVAOP/AAABAAAAAABNAOL/AAABAAAAAABIAOP/AAABAAAAAABIAOL/AAABAAAAAABTANj/AAABAAAAAABNANb/AAABAAAAAABGANb/AAABAAAAAAA5ANb/AAABAAAAAAA/ANf/AAABAAAAAABBANb/AAABAAAAAABAAN3/AAABAAAAAABYAOP/AAACAAAAAAA4AOP/AAACAAAAAABCAOL/AAAAAAAAAABRAOL/AAABAAAAAABSAN3/AAAAAAAAAABLANf/AAAAAAAAAABTANf/AAAAAAAAAABWANb/AAAAAAAAAAA9AOP/AAAAAAAAAAA+AOP/AAAAAAAAAABDAOP/AAAAAAAAAABNAOP/AAAAAAAAAABRAOP/AAAAAAAAAAAmACQAAAAAAAAAAAAoAB4AAAABAAAAAAAnACkAAAABAAAAAAAnADAAAAACAAAAAAAkAB4AAAACAAAAAAAfAB0AAAAAAAAAAAAHAB4AAAAAAAAAAAAHACQAAAABAAAAAAAHACsAAAABAAAAAAAIADIAAAABAAAAAAAZAB0AAAAAAAAAAAAUAB0AAAAAAAAAAAAOAB0AAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAALAB8AAAABAAAAAAAkAB8AAAAAAAAAAAAjACYAAAAAAAAAAAAfACIAAAAAAAAAAAAfAB8AAAABAAAAAAAVACAAAAABAAAAAAARACEAAAABAAAAAAAOACUAAAABAAAAAAAKACQAAAABAAAAAAALACsAAAABAAAAAAAYACUAAAABAAAAAAAaACAAAAACAAAAAAAdACcAAAACAAAAAAAjACoAAAACAAAAAAAlACQAAAACAAAAAAAmACoAAAACAAAAAAAlAC8AAAACAAAAAAAeAC0AAAACAAAAAAAUACsAAAABAAAAAAASACYAAAABAAAAAAAYACoAAAABAAAAAAANAC8AAAABAAAAAAAJAC4AAAABAAAAAAAJACgAAAABAAAAAAAJACQAAAABAAAAAAARACoAAAAAAAAAAAATADAAAAAAAAAAAAAaADAAAAAAAAAAAAAeADEAAAAAAAAAAAALADEAAAAAAAAAAAASADIAAAAAAAAAAAAbADIAAAAAAAAAAAAjADMAAAAAAAAAAAASAB8AAAAAAAAAAAAYAB8AAAAAAAAAAAA+ANr/AAAAAAAAAABNANv/AAAAAAAAAABQAN//AAAAAAAAAABEAOH/AAAAAAAAAAA9AOL/AAAAAAAAAAA5AN//AAAAAAAAAAA6ANv/AAAAAAAAAABIAN3/AAAAAAAAAABEANr/AAAAAAAAAABYANj/AAABAAAAAABYAN7/AAABAAAAAABVAOP/AAABAAAAAABNAOL/AAABAAAAAABIAOP/AAABAAAAAABIAOL/AAABAAAAAABTANj/AAABAAAAAABNANb/AAABAAAAAABGANb/AAABAAAAAAA5ANb/AAABAAAAAAA/ANf/AAABAAAAAABBANb/AAABAAAAAABAAN3/AAABAAAAAABYAOP/AAACAAAAAAA4AOP/AAACAAAAAABCAOL/AAAAAAAAAABRAOL/AAABAAAAAABSAN3/AAAAAAAAAABLANf/AAAAAAAAAABTANf/AAAAAAAAAABWANb/AAAAAAAAAAA9AOP/AAAAAAAAAAA+AOP/AAAAAAAAAABDAOP/AAAAAAAAAABNAOP/AAAAAAAAAABRAOP/AAAAAAAAAAAmACQAAAAAAAAAAAAoAB4AAAABAAAAAAAnACkAAAABAAAAAAAnADAAAAACAAAAAAAkAB4AAAACAAAAAAAfAB0AAAAAAAAAAAAHAB4AAAAAAAAAAAAHACQAAAABAAAAAAAHACsAAAABAAAAAAAIADIAAAABAAAAAAAZAB0AAAAAAAAAAAAUAB0AAAAAAAAAAAAOAB0AAAAAAAAAAAAcACsAAAABAAAAAABCAOP/AAABAAAAAACLABIAAAAAAAAAAACKAA4AAAAAAAAAAACIAP//AAAAAAAAAACJAPn/AAAAAAAAAACJAOz/AAAAAAAAAACIAOT/AAAAAAAAAACJANv/AAAAAAAAAACJAC4AAAAAAAAAAACJABgAAAAAAAAAAAA=")
 
 [node name="wall_collision" type="CharacterBody2D" parent="TrashPile"]
 position = Vector2(2312, 94)
@@ -131,10 +131,14 @@ position = Vector2(-375, 1160)
 position = Vector2(-1687, 373)
 
 [node name="Tornado" parent="." instance=ExtResource("9_7t01d")]
-position = Vector2(1412, 556)
+position = Vector2(1139, 485)
 
 [node name="Tornado2" parent="." instance=ExtResource("9_7t01d")]
 position = Vector2(1413, -895)
+
+[node name="Kraken" parent="." instance=ExtResource("13_y7yd4")]
+position = Vector2(-451, 1124)
+scale = Vector2(0.95, 0.952)
 
 [node name="TrashWall" type="Sprite2D" parent="."]
 position = Vector2(2026, -719)
@@ -145,6 +149,13 @@ texture = ExtResource("12_lsje7")
 position = Vector2(-14.736893, -360.29413)
 rotation = -3.1240723
 scale = Vector2(0.95000064, 0.9519994)
+skew = -7.355213e-05
+texture = ExtResource("12_lsje7")
+
+[node name="TrashWall4" type="Sprite2D" parent="TrashWall"]
+position = Vector2(-0.40443993, 508.19336)
+rotation = -3.1240723
+scale = Vector2(1.0698524, 0.9519994)
 skew = -7.355213e-05
 texture = ExtResource("12_lsje7")
 
@@ -161,12 +172,12 @@ texture = ExtResource("12_lsje7")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="TrashWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
-position = Vector2(65.26307, -167.01683)
-rotation = 0.020111887
+position = Vector2(73.684326, -179.62189)
+rotation = 0.020111885
 shape = SubResource("RectangleShape2D_lsje7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
-position = Vector2(18.947382, 1612.3949)
+position = Vector2(27.368435, 1410.7142)
 shape = SubResource("RectangleShape2D_e6c1u")
 
 [node name="Mini_menu" type="CanvasLayer" parent="."]

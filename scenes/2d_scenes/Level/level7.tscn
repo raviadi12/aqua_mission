@@ -1,18 +1,18 @@
 [gd_scene load_steps=26 format=4 uid="uid://ser1cm26hghk"]
 
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_bcq0x"]
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_bcq0x"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_oj8t3"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_ggslf"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_ggslf"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_5nn7k"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="5_x65hk"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="6_ey7uo"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="7_k4lsv"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="6_ey7uo"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="7_k4lsv"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_qxeen"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="8_27h5o"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="8_27h5o"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_nodf7"]
-[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="9_jnve5"]
-[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="10_jtq83"]
+[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="9_jnve5"]
+[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="10_jtq83"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="11_qh2vg"]
 [ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="12_lojdk"]
 
@@ -35,7 +35,7 @@ size = Vector2(1633, 525)
 size = Vector2(160.28424, 2306.4077)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg2rn"]
-size = Vector2(157.763, 2399.422)
+size = Vector2(157.763, 3201.812)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcq0x"]
 size = Vector2(7896, 336)
@@ -219,6 +219,31 @@ position = Vector2(4.932137, -1633.5599)
 rotation = 6.2659893
 texture = ExtResource("11_qh2vg")
 
+[node name="TrashWall7" type="Sprite2D" parent="TrashWall"]
+position = Vector2(54.73681, 1485.2943)
+scale = Vector2(0.9718135, 0.55959207)
+texture = ExtResource("11_qh2vg")
+
+[node name="TrashWall8" type="Sprite2D" parent="TrashWall"]
+position = Vector2(41.052597, 1017.85693)
+scale = Vector2(0.9718135, 0.55959207)
+texture = ExtResource("11_qh2vg")
+
+[node name="TrashWall2" type="Sprite2D" parent="TrashWall/TrashWall8"]
+position = Vector2(40.000015, 2845.5881)
+scale = Vector2(1.064472, 0.74805886)
+texture = ExtResource("11_qh2vg")
+
+[node name="TrashWall9" type="Sprite2D" parent="TrashWall"]
+position = Vector2(54.73681, 1096.6387)
+scale = Vector2(0.9718135, 0.55959207)
+texture = ExtResource("11_qh2vg")
+
+[node name="TrashWall2" type="Sprite2D" parent="TrashWall/TrashWall9"]
+position = Vector2(40.000015, 2845.5881)
+scale = Vector2(1.064472, 0.74805886)
+texture = ExtResource("11_qh2vg")
+
 [node name="TrashWall2" type="Sprite2D" parent="TrashWall"]
 position = Vector2(40.000015, 2845.5881)
 scale = Vector2(1.064472, 0.74805886)
@@ -237,7 +262,7 @@ rotation = 0.02011188
 shape = SubResource("RectangleShape2D_rndb4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TrashWall/CharacterBody2D"]
-position = Vector2(74.80249, 2694.1963)
+position = Vector2(53.68421, 2360.294)
 shape = SubResource("RectangleShape2D_eg2rn")
 
 [node name="Kraken" parent="." instance=ExtResource("12_lojdk")]
