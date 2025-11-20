@@ -18,7 +18,7 @@ enum State { LURKING, TURNING_AGGRESSIVE, CHASING }
 @export var obstacle_collision_mask: int = 1
 @export var search_angle_increment: float = 15.0
 @export var max_search_attempts: int = 12
-@export var debug_enabled: bool = true
+@export var debug_enabled: bool = false
 @export var smoothing_speed: float = 5.0
 @export var wall_follow_persistence: float = 2.0
 @export var body_radius: float = 40.0
@@ -26,6 +26,8 @@ enum State { LURKING, TURNING_AGGRESSIVE, CHASING }
 @export var path_update_interval: float = 0.2
 @export var max_search_depth: int = 12
 @export var beam_width: int = 5
+@export var sprite_offset: Vector2 = Vector2(0, -50) # Adjust this to align the sprite with the logic center (Red Circle)
+@export var player_target_offset: Vector2 = Vector2(200, 0) # Offset to apply to player position when chasing/detecting
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -54,9 +56,26 @@ var active_path: Array[Vector2] = []
 var _path_update_timer: float = 0.0
 var _cached_move_dir: Vector2 = Vector2.ZERO
 
+# Logic Center is always global_position (Root)
+func _get_body_center() -> Vector2:
+	return global_position
+
+func _update_positions() -> void:
+	# Only offset the sprite. Everything else stays at Root (Logic Center).
+	if anim:
+		anim.position = sprite_offset
+	if detection_area:
+		detection_area.position = Vector2.ZERO
+	if shape_cast:
+		shape_cast.position = Vector2.ZERO
+
 func _ready() -> void:
+	print("Kraken Ready. Logic at Root. Sprite Offset: ", sprite_offset)
 	spawn_position = global_position
 	last_position = global_position
+	
+	_update_positions()
+		
 	anim.play("lurking")
 	
 	# Setup physics query for recursive pathfinding
@@ -92,6 +111,7 @@ func _setup_physics_query() -> void:
 func _setup_shapecast() -> void:
 	shape_cast = ShapeCast2D.new()
 	shape_cast.enabled = true
+	shape_cast.position = Vector2.ZERO # Align with body center
 	shape_cast.collision_mask = obstacle_collision_mask
 	shape_cast.collide_with_areas = false
 	shape_cast.collide_with_bodies = true
@@ -108,6 +128,9 @@ func _find_tornadoes() -> void:
 	print("Kraken found ", tornadoes.size(), " tornadoes to avoid")
 
 func _process(delta: float) -> void:
+	# Live update for visual offset (useful for debugging/tweaking)
+	_update_positions()
+
 	match current_state:
 		State.LURKING:
 			_process_lurking(delta)
@@ -156,6 +179,12 @@ func _draw() -> void:
 	# Draw blocked status
 	if is_blocked:
 		draw_circle(Vector2.ZERO, 10, Color.RED)
+	
+	# Draw catch radius (outline)
+	draw_arc(Vector2.ZERO, 50.0, 0, TAU, 32, Color.RED, 2.0)
+	# Draw logic center
+	draw_line(Vector2(-10, 0), Vector2(10, 0), Color.GREEN, 2.0)
+	draw_line(Vector2(0, -10), Vector2(0, 10), Color.GREEN, 2.0)
 
 func _process_lurking(delta: float) -> void:
 	# Check for nearby tornadoes and avoid them
@@ -178,7 +207,7 @@ func _process_lurking(delta: float) -> void:
 			global_position += direction * lurk_speed * delta
 			
 			# Check if reached target
-			if global_position.distance_to(target_position) < 10.0:
+			if _get_body_center().distance_to(target_position) < 10.0:
 				is_moving = false
 				idle_timer = randf_range(idle_time_min, idle_time_max)
 	else:
@@ -222,7 +251,8 @@ func _process_chasing(delta: float) -> void:
 		stuck_timer = 0.0
 	
 	# Check if player is still in detection range to reset timer
-	var distance_to_player = global_position.distance_to(player.global_position)
+	var player_target_pos = player.global_position + player_target_offset
+	var distance_to_player = _get_body_center().distance_to(player_target_pos)
 	if distance_to_player <= detection_radius:
 		# Player still in range, reset timer
 		aggressive_timer = aggressive_timeout
@@ -241,11 +271,11 @@ func _process_chasing(delta: float) -> void:
 	
 	if tornado_avoidance != Vector2.ZERO:
 		# Prioritize avoiding tornado
-		var to_player = _get_movement_direction_with_avoidance(player.global_position, delta)
+		var to_player = _get_movement_direction_with_avoidance(player_target_pos, delta)
 		final_direction = (tornado_avoidance * 0.7 + to_player * 0.3).normalized()
 	else:
 		# Chase the player with obstacle avoidance
-		final_direction = _get_movement_direction_with_avoidance(player.global_position, delta)
+		final_direction = _get_movement_direction_with_avoidance(player_target_pos, delta)
 	
 	# Smooth out the movement to prevent twitching
 	current_velocity_dir = current_velocity_dir.move_toward(final_direction, smoothing_speed * delta)
@@ -257,7 +287,7 @@ func _process_chasing(delta: float) -> void:
 	global_position += current_velocity_dir * speed * delta
 	
 	# Check if caught player (close enough)
-	if global_position.distance_to(player.global_position) < 50.0:
+	if _get_body_center().distance_to(player_target_pos) < 50.0:
 		_catch_player()
 
 func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Vector2:
@@ -271,7 +301,7 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 		debug_path_points.clear()
 		debug_candidate_points.clear()
 		is_blocked = false
-		return (target - global_position).normalized()
+		return (target - _get_body_center()).normalized()
 	
 	# Path Following Logic
 	# We maintain an 'active_path' and only switch if a significantly better one is found.
@@ -280,7 +310,7 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 	if not active_path.is_empty():
 		var next_point = active_path[0]
 		# If we reached the next point (within body radius), pop it
-		if global_position.distance_to(next_point) < body_radius:
+		if _get_body_center().distance_to(next_point) < body_radius:
 			active_path.pop_front()
 	
 	# 2. Periodic Path Recalculation
@@ -294,7 +324,7 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 			debug_path_points.clear()
 			debug_candidate_points.clear()
 			is_blocked = false
-			return (target - global_position).normalized()
+			return (target - _get_body_center()).normalized()
 		
 		var max_depth = max_search_depth
 		var step_distance = body_radius * 2.0
@@ -302,12 +332,12 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 		# Determine initial direction for search to avoid hairpins
 		var search_start_dir = current_velocity_dir
 		if search_start_dir.length_squared() < 0.1:
-			search_start_dir = (target - global_position).normalized()
+			search_start_dir = (target - _get_body_center()).normalized()
 		else:
 			search_start_dir = search_start_dir.normalized()
 		
 		# Run Beam Search
-		var result = _find_path_beam_search(global_position, target, max_depth, step_distance, space_state, search_start_dir)
+		var result = _find_path_beam_search(_get_body_center(), target, max_depth, step_distance, space_state, search_start_dir)
 		var candidate_path = result["path"]
 		var candidate_radii = result["radii"]
 		
@@ -339,14 +369,30 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 	
 	# 3. Return Direction
 	if not active_path.is_empty():
+		# Path Shortcutting / Smoothing
+		# Check if we can skip the immediate next point and go to a further one
+		# This prevents following small zig-zags when a straight line is available
+		var look_ahead_count = min(active_path.size(), 4) # Look up to 4 points ahead
+		
+		# Iterate backwards from the furthest point we want to check
+		for i in range(look_ahead_count - 1, 0, -1):
+			var target_point = active_path[i]
+			# Check if we can move straight to this point
+			if _has_clear_path_to_target(target_point, space_state):
+				# We can take a shortcut!
+				# Remove all points before this one
+				for k in range(i):
+					active_path.pop_front()
+				break
+		
 		is_blocked = false
-		return (active_path[0] - global_position).normalized()
+		return (active_path[0] - _get_body_center()).normalized()
 	
 	# 4. Fallback (if no path found)
 	is_blocked = true
 	
 	# Simple slide logic
-	var direct_dir = (target - global_position).normalized()
+	var direct_dir = (target - _get_body_center()).normalized()
 	shape_cast.target_position = direct_dir * obstacle_detection_distance
 	shape_cast.force_shapecast_update()
 	
@@ -362,7 +408,7 @@ func _get_movement_direction_with_avoidance(target: Vector2, delta: float) -> Ve
 func _has_clear_path_to_target(target: Vector2, space_state: PhysicsDirectSpaceState2D) -> bool:
 	# Check if there's a direct line of sight to the target with no obstacles
 	# Use raycast for quick check
-	var ray_params = PhysicsRayQueryParameters2D.create(global_position, target, obstacle_collision_mask)
+	var ray_params = PhysicsRayQueryParameters2D.create(_get_body_center(), target, obstacle_collision_mask)
 	var ray_result = space_state.intersect_ray(ray_params)
 	
 	if not ray_result.is_empty():
@@ -370,13 +416,13 @@ func _has_clear_path_to_target(target: Vector2, space_state: PhysicsDirectSpaceS
 	
 	# Also check with shape cast along the path to ensure body can fit
 	# Sample a few points along the path
-	var distance = global_position.distance_to(target)
+	var distance = _get_body_center().distance_to(target)
 	var samples = max(3, int(distance / (body_radius * 2.0)))
-	var direction = (target - global_position).normalized()
+	var direction = (target - _get_body_center()).normalized()
 	
 	for i in range(1, samples + 1):
 		var check_dist = (distance * i) / samples
-		var check_pos = global_position + direction * check_dist
+		var check_pos = _get_body_center() + direction * check_dist
 		
 		query_params.shape.radius = body_radius
 		query_params.transform = Transform2D(0, check_pos)
@@ -460,6 +506,12 @@ func _find_path_beam_search(start_pos: Vector2, target: Vector2, max_depth: int,
 				# 10 units of distance penalty per radian of turn
 				var turn_penalty = abs(angle_offset) * 10.0
 				
+				# Direction to Target Penalty (Focus Oriented)
+				# Penalize directions that deviate from the direct line to the target
+				var dir_to_target = (target - next_pos).normalized()
+				var angle_to_target = check_dir.angle_to(dir_to_target)
+				var target_focus_penalty = abs(angle_to_target) * 30.0 # Strong bias towards target
+				
 				# Line of Sight Check (Heuristic)
 				# If the direct path to the target is blocked, penalize this node.
 				# This helps the algorithm prefer paths that "uncover" the target (go around corners).
@@ -470,7 +522,7 @@ func _find_path_beam_search(start_pos: Vector2, target: Vector2, max_depth: int,
 				if not ray_result.is_empty():
 					blocked_penalty = 100.0
 				
-				var score = dist_to_target + turn_penalty + blocked_penalty + squeeze_penalty
+				var score = dist_to_target + turn_penalty + target_focus_penalty + blocked_penalty + squeeze_penalty
 				
 				# Create new path array
 				var new_path = cand["path"].duplicate()
@@ -512,10 +564,10 @@ func _get_tornado_avoidance_direction() -> Vector2:
 		if not is_instance_valid(tornado):
 			continue
 			
-		var distance = global_position.distance_to(tornado.global_position)
+		var distance = _get_body_center().distance_to(tornado.global_position)
 		if distance < tornado_avoidance_distance:
 			# Calculate flee direction away from tornado
-			var away_from_tornado = (global_position - tornado.global_position).normalized()
+			var away_from_tornado = (_get_body_center() - tornado.global_position).normalized()
 			# Weight by proximity (closer = stronger avoidance)
 			var weight = 1.0 - (distance / tornado_avoidance_distance)
 			avoidance_direction += away_from_tornado * weight
@@ -560,5 +612,11 @@ func _return_to_lurking() -> void:
 
 func _catch_player() -> void:
 	print("Kraken caught the player! Game Over!")
-	# End the level - you can customize this
-	get_tree().reload_current_scene()
+	
+	# Find the level_init node which has the game over UI
+	var level_init = get_tree().get_first_node_in_group("level_init")
+	if level_init and level_init.has_method("show_game_over"):
+		level_init.show_game_over(1)  # 1 = CAUGHT_BY_KRAKEN
+	else:
+		# Fallback: reload scene
+		get_tree().reload_current_scene()
