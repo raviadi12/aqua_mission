@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn112riygqtb0"]
+[gd_scene load_steps=20 format=3 uid="uid://bn112riygqtb0"]
 
 [ext_resource type="Script" uid="uid://7rlnttwurpim" path="res://script/switch_scene.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://b4c60l35742oi" path="res://assets/Background/MainMenu.png" id="2_v31u5"]
+[ext_resource type="Texture2D" uid="uid://ytoyjlfanxfn" path="res://assets/Button/PLAY.png" id="3_7li4i"]
+[ext_resource type="Texture2D" uid="uid://cgrsntbvmtd5w" path="res://assets/Button/EXIT.png" id="4_dr7jl"]
+[ext_resource type="FontFile" uid="uid://c5ubs1ekeri8o" path="res://assets/Font Text/04B_30__.TTF" id="5_dr7jl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f84ha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dr7jl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_top = 2
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7li4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8u7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmw6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3q7g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mo7p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 2
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dr7jl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xp60p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oue17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mo7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjmed"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qh15u"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_f84ha"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -25,26 +63,64 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -427.0
-offset_top = -250.0
-offset_right = -227.0
-offset_bottom = -100.0
+offset_left = -1487.0
+offset_top = -700.0
+offset_right = -1287.0
+offset_bottom = -550.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(2, 2)
+scale = Vector2(5.1199965, 5.720001)
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "PLAY"
-alignment = 2
-vertical_icon_alignment = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f84ha")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dr7jl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7li4i")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j8u7e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cmw6q")
+icon = ExtResource("3_7li4i")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="QUIT" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "QUIT"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p3q7g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6mo7p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dr7jl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xp60p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oue17")
+icon = ExtResource("4_dr7jl")
+flat = true
 alignment = 2
-vertical_icon_alignment = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21614583
+anchor_top = 0.13703704
+anchor_right = 0.7640625
+anchor_bottom = 0.2468889
+offset_bottom = 0.35998535
+grow_horizontal = 2
+theme_override_colors/search_result_color = Color(0.012339479, 4.632585e-07, 0.14476758, 1)
+theme_override_colors/caret_color = Color(1, 0.8094609, 0.93075114, 1)
+theme_override_colors/selection_color = Color(0.7004618, 0.3954641, 0.47535717, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/background_color = Color(0, 0, 1, 0)
+theme_override_constants/caret_width = 5
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dr7jl")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6mo7p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjmed")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_qh15u")
+text = "AQUA MISSION"
+syntax_highlighter = SubResource("CodeHighlighter_f84ha")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

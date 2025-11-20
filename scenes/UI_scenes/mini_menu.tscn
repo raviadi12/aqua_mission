@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca6iawis3m3fa"]
+[gd_scene load_steps=21 format=3 uid="uid://ca6iawis3m3fa"]
 
 [ext_resource type="Script" uid="uid://cq4njkwkhcm8e" path="res://script/mini_menu.gd" id="1_7m3fq"]
+[ext_resource type="Texture2D" uid="uid://by1mm78kjo1fh" path="res://assets/Background/MiniMenu.png" id="2_bs26e"]
+[ext_resource type="Texture2D" uid="uid://c83u8xkrrelge" path="res://assets/Button/RESUME.png" id="3_p357e"]
+[ext_resource type="Texture2D" uid="uid://lwgfgccnw2vg" path="res://assets/Button/RESTART.png" id="4_0kl18"]
+[ext_resource type="Texture2D" uid="uid://dairkqnff40pr" path="res://assets/Button/QUIT.png" id="5_iun43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1erni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvwa6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btdgk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nau1m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmqym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnuyk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp4ra"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pwesc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g1db"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uan0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b0ont"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4u5u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dys65"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1qnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eutvp"]
 
 [node name="Mini_menu" type="Control"]
 layout_mode = 3
@@ -10,57 +50,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7m3fq")
+metadata/_edit_vertical_guides_ = [227.0]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visibility_layer = 16
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -466.0
-offset_top = -240.5
-offset_right = 466.0
-offset_bottom = 240.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+anchors_preset = -1
+anchor_left = 0.2585625
+anchor_top = 0.30692592
+anchor_right = 0.7455625
+anchor_bottom = 0.6910741
+offset_left = -0.44000244
+offset_top = 0.519989
+offset_right = -0.47998047
+offset_bottom = -0.35998535
+texture = ExtResource("2_bs26e")
+metadata/_edit_use_anchors_ = true
 
 [node name="Resume" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2765625
-anchor_top = 0.57222223
-anchor_right = 0.37604168
-anchor_bottom = 0.6851852
+anchor_left = 0.29947916
+anchor_top = 0.52685183
+anchor_right = 0.39895833
+anchor_bottom = 0.6398148
 grow_horizontal = 2
 grow_vertical = 2
-text = "RESUME"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1erni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fvwa6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_btdgk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nau1m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hmqym")
+icon = ExtResource("3_p357e")
+flat = true
+icon_alignment = 1
+expand_icon = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Restart" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.44791666
-anchor_top = 0.57222223
-anchor_right = 0.5473958
-anchor_bottom = 0.6851852
+anchor_left = 0.45572916
+anchor_top = 0.52685183
+anchor_right = 0.5552083
+anchor_bottom = 0.6398148
 grow_horizontal = 2
 grow_vertical = 2
-text = "RESTART"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnuyk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yp4ra")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pwesc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7g1db")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uan0i")
+icon = ExtResource("4_0kl18")
+flat = true
+icon_alignment = 1
+expand_icon = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.61875
-anchor_top = 0.5694444
-anchor_right = 0.7182292
-anchor_bottom = 0.6824074
+anchor_left = 0.60833335
+anchor_top = 0.5287037
+anchor_right = 0.7078125
+anchor_bottom = 0.64166677
 grow_horizontal = 2
 grow_vertical = 2
-text = "QUIT"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b0ont")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r4u5u")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dys65")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a1qnb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eutvp")
+icon = ExtResource("5_iun43")
+flat = true
+icon_alignment = 1
+expand_icon = true
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
