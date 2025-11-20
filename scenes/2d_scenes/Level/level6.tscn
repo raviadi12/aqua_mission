@@ -119,10 +119,12 @@ position = Vector2(-636, 251)
 
 [node name="Trash21" parent="Trash" instance=ExtResource("6_rnq7g")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-125, 520)
 
 [node name="Trash20" parent="Trash" instance=ExtResource("6_rnq7g")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-219, -240)
 
 [node name="Trash11" parent="Trash" instance=ExtResource("6_rnq7g")]
@@ -130,6 +132,7 @@ position = Vector2(1535, -1633)
 
 [node name="Trash24" parent="Trash" instance=ExtResource("6_rnq7g")]
 visible = false
+is_hidden_trash = true
 position = Vector2(1051, -1646)
 
 [node name="Trash15" parent="Trash" instance=ExtResource("6_rnq7g")]
@@ -149,6 +152,7 @@ position = Vector2(-1957, 942)
 
 [node name="Trash22" parent="Trash" instance=ExtResource("8_ackd4")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-2408, 572)
 
 [node name="Trash13" parent="Trash" instance=ExtResource("8_ackd4")]
@@ -159,6 +163,7 @@ position = Vector2(-2844, -1639)
 
 [node name="Trash23" parent="Trash" instance=ExtResource("8_ackd4")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-2790, -1067)
 
 [node name="Trash19" parent="Trash" instance=ExtResource("8_ackd4")]

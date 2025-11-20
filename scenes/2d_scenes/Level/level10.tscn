@@ -137,6 +137,7 @@ position = Vector2(-901, 803)
 
 [node name="Trash" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-643, -434)
 
 [node name="Trash35" parent="Trash" instance=ExtResource("5_t3h2e")]
@@ -150,6 +151,7 @@ position = Vector2(-3595, -2068)
 
 [node name="Trash17" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(2217, 1164)
 
 [node name="Trash10" parent="Trash" instance=ExtResource("5_t3h2e")]
@@ -163,6 +165,7 @@ position = Vector2(-136, -2252)
 
 [node name="Trash34" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(518, -2270)
 
 [node name="Trash33" parent="Trash" instance=ExtResource("5_t3h2e")]
@@ -179,10 +182,12 @@ position = Vector2(-203, 2058)
 
 [node name="Trash23" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(796, 2176)
 
 [node name="Trash27" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-1633, 2263)
 
 [node name="Trash21" parent="Trash" instance=ExtResource("5_t3h2e")]
@@ -193,6 +198,7 @@ position = Vector2(1956, 1630)
 
 [node name="Trash29" parent="Trash" instance=ExtResource("5_t3h2e")]
 visible = false
+is_hidden_trash = true
 position = Vector2(856, 737)
 
 [node name="Trash2" parent="Trash" instance=ExtResource("6_76yfw")]
@@ -212,6 +218,7 @@ position = Vector2(3189, 1607)
 
 [node name="Trash31" parent="Trash" instance=ExtResource("6_76yfw")]
 visible = false
+is_hidden_trash = true
 position = Vector2(3281, 983)
 
 [node name="Trash16" parent="Trash" instance=ExtResource("6_76yfw")]
@@ -222,6 +229,7 @@ position = Vector2(-3388, -666)
 
 [node name="Trash36" parent="Trash" instance=ExtResource("7_rrv3i")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-3149, -1235)
 
 [node name="Trash12" parent="Trash" instance=ExtResource("7_rrv3i")]
@@ -244,6 +252,7 @@ position = Vector2(-2905, 1020)
 
 [node name="Trash7" parent="Trash" instance=ExtResource("9_w0o82")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-2738, 585)
 
 [node name="Trash37" parent="Trash" instance=ExtResource("8_winyu")]

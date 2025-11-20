@@ -8,6 +8,7 @@ var is_level_finished = false
 # It counts all trash objects at the start
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	_set_level_trash_goal()
 	
 	# Instantiate UI but keep it hidden (handled by the UI script itself)

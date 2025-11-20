@@ -178,6 +178,9 @@ const LEVEL_POPUP_DATA = {
 var total_trash_in_level: int = 0
 var is_furnace_burning: bool = false
 
+func _ready():
+	get_tree().debug_collisions_hint = false
+
 #Global Function
 func change_scene_to(node) -> void:
 	get_tree().change_scene_to_file(node)

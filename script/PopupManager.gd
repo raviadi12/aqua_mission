@@ -5,8 +5,9 @@ var completed_popups: Array = []
 var current_level_data: Array = []
 var pause_count: int = 0
 
-func _init():
+func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_initialize_popups()
 
 func request_pause():
 	pause_count += 1
@@ -26,7 +27,7 @@ func release_pause():
 
 var popup_scene = preload("res://scenes/UI_scenes/BubblePopup.tscn")
 
-func _ready():
+func _initialize_popups():
 	# Determine current level
 	var current_scene_path = get_tree().current_scene.scene_file_path
 	var level_key = ""
@@ -37,8 +38,26 @@ func _ready():
 	
 	if level_key in Global.LEVEL_POPUP_DATA:
 		current_level_data = Global.LEVEL_POPUP_DATA[level_key]
-		print("PopupManager: Loaded data for ", level_key)
-		_check_triggers("game_start")
+		print("PopupManager: Loaded data for ", level_key, " with ", current_level_data.size(), " popups")
+		
+		# Count how many game_pause popups will spawn at game_start
+		var pause_needed = false
+		for data in current_level_data:
+			var trigger = data.get("trigger", {})
+			if trigger.get("type") == "game_start":
+				var behaviors = data.get("behavior", [])
+				if "game_pause" in behaviors:
+					print("PopupManager: Found game_start popup with pause: ", data.get("id"))
+					pause_needed = true
+					# Don't break - we need to count all
+		
+		# Pause immediately if needed
+		if pause_needed:
+			print("PopupManager: PAUSING GAME NOW")
+			request_pause()
+		
+		# Now spawn the popups
+		call_deferred("_check_triggers", "game_start")
 	else:
 		print("PopupManager: No popup data for ", level_key)
 

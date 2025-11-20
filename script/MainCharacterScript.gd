@@ -18,6 +18,7 @@ var last_facing := "South"
 var health: float = 100.0
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_to_group("player")
 
 func update_animation():

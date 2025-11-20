@@ -1,19 +1,19 @@
 [gd_scene load_steps=25 format=4 uid="uid://dqfi2jr6nt861"]
 
+[ext_resource type="PackedScene" uid="uid://dpgrt1i3ocbxv" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_ex0wx"]
 [ext_resource type="Script" uid="uid://bxyu5wrr8kreq" path="res://script/level_init.gd" id="1_levelinit"]
-[ext_resource type="PackedScene" path="res://assets/tileMap/tileMap_ocean.tscn" id="1_ex0wx"]
 [ext_resource type="PackedScene" uid="uid://cqqhadeage5s8" path="res://Objects/main_character.tscn" id="3_ch243"]
-[ext_resource type="PackedScene" path="res://Objects/Trash_pile.tscn" id="4_pwvob"]
+[ext_resource type="PackedScene" uid="uid://p60d5lnvnpbg" path="res://Objects/Trash_pile.tscn" id="4_pwvob"]
 [ext_resource type="PackedScene" uid="uid://dktaeac8uww5d" path="res://Objects/trash.tscn" id="5_hwvys"]
 [ext_resource type="PackedScene" uid="uid://emtmjwq7om05" path="res://Objects/furnace.tscn" id="5_nqxyo"]
-[ext_resource type="PackedScene" path="res://Objects/trash_2.tscn" id="6_fy7n5"]
-[ext_resource type="PackedScene" path="res://Objects/trash_3.tscn" id="7_lrm1f"]
+[ext_resource type="PackedScene" uid="uid://s5j24u1q1bq6" path="res://Objects/trash_2.tscn" id="6_fy7n5"]
+[ext_resource type="PackedScene" uid="uid://1baintppwc72" path="res://Objects/trash_3.tscn" id="7_lrm1f"]
 [ext_resource type="Script" uid="uid://jd1jkx1q32l2" path="res://script/mini_menu (2).gd" id="7_wc274"]
 [ext_resource type="PackedScene" uid="uid://ca6iawis3m3fa" path="res://scenes/UI_scenes/mini_menu.tscn" id="8_28eli"]
-[ext_resource type="PackedScene" path="res://Objects/trash_4.tscn" id="8_phaq0"]
+[ext_resource type="PackedScene" uid="uid://crvd7p4w34je5" path="res://Objects/trash_4.tscn" id="8_phaq0"]
 [ext_resource type="PackedScene" uid="uid://dk8vsp5hxrxsx" path="res://scenes/2d_scenes/tornado.tscn" id="9_a86xg"]
-[ext_resource type="PackedScene" path="res://Objects/trash_5.tscn" id="9_m5if8"]
-[ext_resource type="PackedScene" path="res://Objects/trash_6.tscn" id="10_fqsgc"]
+[ext_resource type="PackedScene" uid="uid://cegemdtanlpb7" path="res://Objects/trash_5.tscn" id="9_m5if8"]
+[ext_resource type="PackedScene" uid="uid://c4oiy1i8n8k6a" path="res://Objects/trash_6.tscn" id="10_fqsgc"]
 [ext_resource type="PackedScene" uid="uid://cq0w7ygtvnrts" path="res://scenes/2d_scenes/kraken.tscn" id="12_1hqx1"]
 [ext_resource type="Texture2D" uid="uid://dbyovkwdx6dkf" path="res://assets/TrashWall.png" id="13_2v88l"]
 
@@ -84,6 +84,7 @@ position = Vector2(223, -1289)
 
 [node name="Trash16" parent="Trash" instance=ExtResource("5_hwvys")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-466, -1230)
 
 [node name="Trash2" parent="Trash" instance=ExtResource("6_fy7n5")]
@@ -112,6 +113,7 @@ position = Vector2(2080, -207)
 
 [node name="Trash15" parent="Trash" instance=ExtResource("7_lrm1f")]
 visible = false
+is_hidden_trash = true
 position = Vector2(1972, 404)
 
 [node name="Trash4" parent="Trash" instance=ExtResource("8_phaq0")]
@@ -119,6 +121,7 @@ position = Vector2(-995, 28)
 
 [node name="Trash14" parent="Trash" instance=ExtResource("8_phaq0")]
 visible = false
+is_hidden_trash = true
 position = Vector2(-552, 619)
 
 [node name="Trash5" parent="Trash" instance=ExtResource("9_m5if8")]
@@ -136,6 +139,7 @@ position = Vector2(1783, 1332)
 [node name="Kraken" parent="." instance=ExtResource("12_1hqx1")]
 z_index = 100
 position = Vector2(1822, -1492)
+obstacle_detection_distance = 1000.0
 
 [node name="TrashWall" type="Sprite2D" parent="."]
 position = Vector2(2436, -731)
