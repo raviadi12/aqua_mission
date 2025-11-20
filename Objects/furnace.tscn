@@ -67,7 +67,7 @@ scale = Vector2(0.48308468, 0.5673972)
 theme_type_variation = &"HeaderSmall"
 theme_override_fonts/font = ExtResource("3_6y41g")
 theme_override_font_sizes/font_size = 30
-text = "PRESS [O] TO PICK UP"
+text = "TEKAN [O] UNTUK PROSES"
 
 [node name="BurnProgress" type="Control" parent="."]
 visible = false

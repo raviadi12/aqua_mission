@@ -1,12 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://c44acnuqpgvf1"]
+[gd_scene load_steps=17 format=3 uid="uid://c44acnuqpgvf1"]
 
-[ext_resource type="Script" path="res://script/level_complete_ui.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://cvdh0ubg4sqq0" path="res://assets/BarBackgorund.png" id="2_bg"]
-[ext_resource type="Theme" uid="uid://b7qdxqwl3fvgd" path="res://assets/main_theme.tres" id="3_theme"]
+[ext_resource type="Script" uid="uid://caa80x2oc3plc" path="res://script/level_complete_ui.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://by1mm78kjo1fh" path="res://assets/Background/MiniMenu.png" id="2_0fgue"]
+[ext_resource type="Theme" path="res://assets/main_theme.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://cq5c1r1ae87ow" path="res://assets/Button/NEXT.png" id="4_lbn3q"]
+[ext_resource type="Texture2D" uid="uid://b6xe3ub8tao03" path="res://assets/Button/Menu.png" id="5_myhlb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fgue"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbn3q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myhlb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qafwo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6keap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lby4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hv7p3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmgmj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iaae4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p41ta"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bhlg"]
 
 [node name="LevelCompleteUI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_right = 0.021000002
+anchor_bottom = 0.037
+offset_left = 704.0
+offset_top = 336.0
+offset_right = 1175.68
+offset_bottom = 705.04
+size_flags_horizontal = 4
+texture = ExtResource("2_0fgue")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -21,16 +60,17 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_theme")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0fgue")
 
 [node name="TitleLabel" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -100.0
+offset_left = -156.5
 offset_top = 20.0
-offset_right = 100.0
-offset_bottom = 60.0
+offset_right = 156.5
+offset_bottom = 65.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "LEVEL SELESAI!"
@@ -61,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -80.0
-offset_right = 200.0
-offset_bottom = -20.0
+offset_left = -199.0
+offset_top = -96.0
+offset_right = 201.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 30
@@ -73,13 +113,27 @@ alignment = 1
 [node name="NextButton" type="Button" parent="Panel/ButtonContainer"]
 custom_minimum_size = Vector2(170, 50)
 layout_mode = 2
-text = "Level Berikutnya"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lbn3q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_myhlb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qafwo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6keap")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lby4p")
+icon = ExtResource("4_lbn3q")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="MenuButton" type="Button" parent="Panel/ButtonContainer"]
 custom_minimum_size = Vector2(170, 50)
 layout_mode = 2
-text = "Menu Utama"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hv7p3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hmgmj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iaae4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_p41ta")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7bhlg")
+icon = ExtResource("5_myhlb")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="Panel/ButtonContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Panel/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-

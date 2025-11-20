@@ -47,13 +47,6 @@ func show_complete(burned: int, total: int, elapsed_time: float = 0.0):
 		var level_num = int(current_level.substr(3))
 		Global.complete_level(level_num)
 	
-	# Update button text based on level
-	if next_button:
-		if current_level == "lvl10":
-			next_button.text = "Lanjutkan"  # Will go to victory cutscene
-		else:
-			next_button.text = "Level Berikutnya"
-
 func _on_next_button_pressed():
 	get_tree().paused = false
 	

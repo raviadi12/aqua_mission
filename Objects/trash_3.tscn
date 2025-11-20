@@ -8,7 +8,7 @@
 size = Vector2(137, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ionjd"]
-radius = 98.0816
+radius = 138.09055
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tplsk"]
 atlas = ExtResource("3_ctanx")

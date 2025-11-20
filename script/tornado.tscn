@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dk8vsp5hxrxsx"]
+[gd_scene load_steps=11 format=3 uid="uid://wo7fd31k504j"]
 
 [ext_resource type="Texture2D" uid="uid://dobl18nqcitd3" path="res://assets/Tornado/Tornado-sheet.png" id="1_jdjvc"]
 [ext_resource type="Script" uid="uid://41a3hdxydwls" path="res://script/tornado.gd" id="2_jdjvc"]

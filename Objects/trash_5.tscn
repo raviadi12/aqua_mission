@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ds3bktaa2nn47" path="res://assets/tileMap/asset_tilemap/Trash_sheets.png" id="3_qbml5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ionjd"]
-radius = 80.00625
+radius = 83.02409
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tplsk"]
 atlas = ExtResource("3_qbml5")
@@ -46,7 +46,7 @@ scale = Vector2(0.48308468, 0.5673972)
 theme_type_variation = &"HeaderSmall"
 theme_override_fonts/font = ExtResource("2_ajajq")
 theme_override_font_sizes/font_size = 20
-text = "PRESS [P] TO PICK UP"
+text = "TEKAN [P] UNTUK AMBIL"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visibility_layer = 1048577
