@@ -7,7 +7,7 @@ var knockback_decay := 10.0  # how fast it fades away
 @onready var item_displey = $Item_displey
 @onready var ship_anim: AnimatedSprite2D = $ShipAnimation
 @onready var granular_engine = $GranularEngine
-@onready var pickup_ui = $HUDLayer/PickupUI
+@onready var pickup_ui = $PickupUI
 
 #character's variabel
 const MaxShipsSPEED = 200.0
