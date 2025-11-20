@@ -140,16 +140,16 @@ func _draw():
 
 func _update_furnace_status():
 	if furnace_label:
-		var status = "Burning..." if Global.is_furnace_burning else "Idle"
+		var status = "Membakar..." if Global.is_furnace_burning else "Siaga"
 		var burned = HoldingItem.quantity_trash_burned
 		var total = Global.total_trash_in_level
 		
-		furnace_label.text = "Furnace: %s\n%d / %d" % [status, burned, total]
+		furnace_label.text = "Tungku: %s\n%d / %d" % [status, burned, total]
 		
 		if Global.is_furnace_burning:
 			furnace_label.modulate = Color(1, 0.5, 0) # Orange
 		elif burned >= total and total > 0:
-			furnace_label.text = "Furnace: DONE\n%d / %d" % [burned, total]
+			furnace_label.text = "Tungku: SELESAI\n%d / %d" % [burned, total]
 			furnace_label.modulate = Color(0, 1, 0) # Green
 		else:
 			furnace_label.modulate = Color(1, 1, 1) # White

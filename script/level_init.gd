@@ -1,18 +1,36 @@
 extends Node2D
 
 var level_complete_ui_scene = preload("res://scenes/UI_scenes/level_complete_ui.tscn")
+var game_over_ui_scene = preload("res://scenes/UI_scenes/game_over_ui.tscn")
 var level_complete_ui_instance = null
+var game_over_ui_instance = null
 var is_level_finished = false
 
 # This script should be attached to the Main node in each level
 # It counts all trash objects at the start
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_to_group("level_init")  # Add to group so other scripts can find this
 	_set_level_trash_goal()
 	
-	# Instantiate UI but keep it hidden (handled by the UI script itself)
+	# Unlock sonar when entering level 4 or higher
+	var current_scene_path = get_tree().current_scene.scene_file_path
+	var file_name = current_scene_path.get_file().get_basename() # e.g. "level4"
+	var level_num_str = file_name.replace("level", "") # "level4" -> "4"
+	var level_num = int(level_num_str)
+	
+	if level_num >= 4:
+		if not Global.sonar_unlocked:
+			Global.sonar_unlocked = true
+			Global.save_game()  # Save immediately so sonar stays unlocked
+	
+	# Instantiate UIs but keep them hidden (handled by the UI scripts themselves)
 	level_complete_ui_instance = level_complete_ui_scene.instantiate()
 	add_child(level_complete_ui_instance)
+	
+	game_over_ui_instance = game_over_ui_scene.instantiate()
+	add_child(game_over_ui_instance)
 
 func _process(_delta):
 	if not is_level_finished:
@@ -31,9 +49,12 @@ func _on_level_complete():
 		var player = get_tree().get_first_node_in_group("player")
 		var elapsed_time = 0.0
 		if player:
-			var timer_node = player.get_node_or_null("HUDLayer/Timer")
+			var timer_node = player.get_node_or_null("HUDLayer/TimerBar")
 			if timer_node and timer_node.has_method("get_elapsed_time"):
 				elapsed_time = timer_node.get_elapsed_time()
+				print("DEBUG: Got elapsed time from timer: ", elapsed_time)
+			else:
+				print("DEBUG: Timer node not found or doesn't have get_elapsed_time()")
 		
 		level_complete_ui_instance.show_complete(HoldingItem.quantity_trash_burned, Global.total_trash_in_level, elapsed_time)
 
@@ -63,3 +84,8 @@ func _count_trash_recursive(node: Node, count: int) -> int:
 		count = _count_trash_recursive(child, count)
 	
 	return count
+
+func show_game_over(reason: int):
+	is_level_finished = true
+	if game_over_ui_instance and game_over_ui_instance.has_method("show_game_over"):
+		game_over_ui_instance.show_game_over(reason)

@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var is_hidden_trash: bool = false  # Set to true for sonar-only trash
+
 var area_enter = false
 var is_picking_up = false
 var pickup_timer = 0.0
@@ -8,6 +10,11 @@ var movement_threshold = 20.0  # Max velocity to allow pickup
 
 @onready var press_E = $"Press[E]"
 @onready var trash = $"."
+@onready var sprite = $Sprite2D
+@onready var trash_area = $Trash_area
+@onready var collision = $Trash_area/CollisionShape2D
+@onready var trash_body = $TrashBody if has_node("TrashBody") else null
+@onready var body_collision = $TrashBody/CollisionShape2D if has_node("TrashBody/CollisionShape2D") else null
 # @onready var progress_indicator = $PickupProgress # Removed local UI
 # @onready var progress_bar = $PickupProgress/ProgressBar # Removed local UI
 
@@ -16,6 +23,20 @@ var player: CharacterBody2D = null
 func _ready():
 	# Find player
 	player = get_tree().get_first_node_in_group("player")
+	
+	# If this is hidden trash (sonar-only), disable physical collision but keep Area2D for pickup
+	if is_hidden_trash:
+		if sprite:
+			sprite.visible = false
+		# Keep trash_area active for pickup detection
+		# Disable only the physical collision body
+		if trash_body:
+			trash_body.set_collision_layer_value(1, false)  # Disable all collision layers
+			trash_body.set_collision_mask_value(1, false)   # Disable all collision masks
+		if body_collision:
+			body_collision.disabled = true
+		if press_E:
+			press_E.visible = false
 
 func _process(delta: float) -> void:
 	if is_picking_up:

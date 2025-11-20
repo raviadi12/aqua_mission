@@ -30,6 +30,8 @@ var trash_icons: Dictionary = {}
 var player: CharacterBody2D
 var player_anim: AnimatedSprite2D
 var debug_counter: int = 0
+var sonar_was_unlocked: bool = false  # Track if we've already enabled sonar UI
+var sonar_panel: Control = null  # Cache SonarPanel reference
 
 func _ready() -> void:
 	transparent_bg = false
@@ -44,18 +46,31 @@ func _ready() -> void:
 	if player:
 		player_anim = player.get_node_or_null("ShipAnimation")
 	
-	# Setup Sonar UI
+	# Hide entire minimap (radar) if sonar not unlocked
+	# SubViewport -> SubViewportContainer -> MiniMapLayer
+	var minimap_layer = get_parent().get_parent()
+	if minimap_layer and not Global.sonar_unlocked:
+		minimap_layer.visible = false
+	elif minimap_layer:
+		minimap_layer.visible = true
+	
+	# Track initial sonar state
+	sonar_was_unlocked = Global.sonar_unlocked
+	print("DEBUG: sub_viewport._ready() - Global.sonar_unlocked = ", Global.sonar_unlocked)
+	
+	# Setup Sonar UI references (always get references, control visibility separately)
 	# SonarPanel is now in HUDLayer (child of MainCharacter)
 	if player:
 		var hud_layer = player.get_node_or_null("HUDLayer")
 		if hud_layer:
-			var sonar_panel = hud_layer.get_node_or_null("SonarPanel")
+			sonar_panel = hud_layer.get_node_or_null("SonarPanel")  # Cache it!
 			if sonar_panel:
+				# Get UI element references first
 				sonar_status_rect = sonar_panel.get_node_or_null("StatusRect")
 				sonar_status_label = sonar_panel.get_node_or_null("StatusLabel")
 				sonar_progress = sonar_panel.get_node_or_null("ProgressBar")
 				
-				# Modernize Sonar Progress Bar
+				# Modernize Sonar Progress Bar (style it even if hidden)
 				if sonar_progress:
 					var style_bg = StyleBoxFlat.new()
 					style_bg.bg_color = Color(0.1, 0.1, 0.1, 0.8)
@@ -74,6 +89,14 @@ func _ready() -> void:
 					sonar_progress.add_theme_stylebox_override("background", style_bg)
 					sonar_progress.add_theme_stylebox_override("fill", style_fill)
 					sonar_progress.show_percentage = false
+				
+				# Control sonar panel visibility based on unlock status
+				if not Global.sonar_unlocked:
+					sonar_panel.visible = false
+					print("DEBUG: Sonar locked - hiding panel")
+				else:
+					sonar_panel.visible = true
+					print("DEBUG: Sonar unlocked - showing panel (DEVELOPER_MODE or level 4+)")
 
 	# Setup Sonar Ring
 	_setup_sonar_ring()
@@ -84,6 +107,22 @@ func _ready() -> void:
 	if player:
 		print("Player type: ", player.get_class(), " Player name: ", player.name)
 	call_deferred("_spawn_trash_icons")
+
+func _enable_sonar_ui():
+	print("DEBUG: _enable_sonar_ui() called")
+	# Show minimap
+	var minimap_layer = get_parent().get_parent()
+	if minimap_layer:
+		minimap_layer.visible = true
+		print("DEBUG: MiniMapLayer.visible = true")
+	
+	# Show sonar panel using cached reference
+	if sonar_panel:
+		sonar_panel.visible = true
+		print("DEBUG: SonarPanel.visible = true - Sonar UI fully enabled!")
+		print("DEBUG: Status elements - Rect:", sonar_status_rect != null, " Label:", sonar_status_label != null, " Progress:", sonar_progress != null)
+	else:
+		print("DEBUG: Cached sonar_panel is null!")
 
 func _setup_player_circle():
 	if player_icon:
@@ -168,6 +207,12 @@ func _setup_sonar_ring():
 		minimap_world.add_child(sonar_ring)
 
 func _process(delta: float) -> void:
+	# Check if sonar just became unlocked and enable UI
+	if Global.sonar_unlocked and not sonar_was_unlocked:
+		print("DEBUG: Sonar unlocked detected, enabling UI...")
+		_enable_sonar_ui()
+		sonar_was_unlocked = true
+	
 	_update_minimap()
 	_process_sonar(delta)
 
@@ -181,19 +226,19 @@ func _process_sonar(delta: float):
 		if sonar_cooldown <= 0:
 			# Ready
 			sonar_status_rect.color = Color(0, 1, 0) # Green
-			sonar_status_label.text = "Sonar is Ready"
+			sonar_status_label.text = "Sonar Siap"
 			sonar_progress.value = 100
 		else:
 			# Charging
 			sonar_status_rect.color = Color(1, 0, 0) # Red
-			sonar_status_label.text = "Sonar is charging"
+			sonar_status_label.text = "Sonar Mengisi"
 			if sonar_cooldown_max > 0:
 				sonar_progress.value = ((sonar_cooldown_max - sonar_cooldown) / sonar_cooldown_max) * 100
 			else:
 				sonar_progress.value = 0
 
-	# Start Ping
-	if Input.is_physical_key_pressed(KEY_K) and not is_pinging and sonar_cooldown <= 0:
+	# Start Ping (only if sonar is unlocked)
+	if Global.sonar_unlocked and Input.is_physical_key_pressed(KEY_K) and not is_pinging and sonar_cooldown <= 0:
 		is_pinging = true
 		ping_radius = 0.0
 		sonar_cooldown = sonar_cooldown_max
@@ -288,17 +333,34 @@ func _spawn_trash_icons() -> void:
 	print("Minimap: Found ", trash_icons.size(), " trash objects")
 
 func _search_for_trash(node: Node) -> void:
-	# Check if this node is a trash object
-	# User requirement: "If Elements starts with Trash## (trash then number) or just trash, then make it as icon, other than that, no."
+	# Check if this node is an actual trash object (pickupable item)
+	# More robust: check if it has the trash script or is in 'trash' group
 	var is_trash = false
-	if node.name == "Trash":
-		is_trash = true
-	elif node.name.begins_with("Trash"):
-		# Check if the rest is a number
-		var suffix = node.name.substr(5)
-		if suffix.is_valid_int():
+	
+	# Method 1: Check if node has a script with "trash" in its path
+	if node.get_script() != null:
+		var script_path = node.get_script().resource_path
+		if "trash" in script_path.to_lower():
 			is_trash = true
-			
+	
+	# Method 2: Check if node is in "trash" group (if you use groups)
+	if not is_trash and node.is_in_group("trash"):
+		is_trash = true
+	
+	# Method 3: Fallback to name checking, but exclude "TrashPile" and "TrashWall"
+	if not is_trash:
+		if node.name == "Trash":
+			is_trash = true
+		elif node.name.begins_with("Trash"):
+			# Exclude walls and piles
+			if "Wall" in node.name or "Pile" in node.name:
+				is_trash = false
+			else:
+				# Check if the rest is a number (Trash2, Trash3, etc.)
+				var suffix = node.name.substr(5)
+				if suffix == "" or suffix.is_valid_int():
+					is_trash = true
+	
 	if is_trash and node is Node2D and node != player:
 		_create_trash_icon(node)
 	

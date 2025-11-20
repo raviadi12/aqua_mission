@@ -18,7 +18,11 @@ var last_facing := "South"
 var health: float = 100.0
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_to_group("player")
+	# Hide pickup UI at start
+	if pickup_ui:
+		pickup_ui.visible = false
 
 func update_animation():
 	if ship_anim == null:
@@ -157,11 +161,15 @@ func take_damage(amount: float):
 
 func die():
 	print("Player died")
-	# Reset trash and furnace progress
-	HoldingItem.quantity_trash = 0
-	HoldingItem.quantity_trash_burned = 0
-	Global.total_trash_in_level = 0
-	Global.is_furnace_burning = false
 	
-	# Reload current scene
-	get_tree().reload_current_scene()
+	# Find the level_init node which has the game over UI
+	var level_init = get_tree().get_first_node_in_group("level_init")
+	if level_init and level_init.has_method("show_game_over"):
+		level_init.show_game_over(0)  # 0 = FUEL_RAN_OUT (generic death)
+	else:
+		# Fallback: reload scene
+		HoldingItem.quantity_trash = 0
+		HoldingItem.quantity_trash_burned = 0
+		Global.total_trash_in_level = 0
+		Global.is_furnace_burning = false
+		get_tree().reload_current_scene()

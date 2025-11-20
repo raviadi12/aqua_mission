@@ -45,7 +45,7 @@ scale = Vector2(0.48308468, 0.5673972)
 theme_type_variation = &"HeaderSmall"
 theme_override_fonts/font = ExtResource("3_6dsr2")
 theme_override_font_sizes/font_size = 20
-text = "PRESS [P] TO PICK UP"
+text = "TEKAN [P] UNTUK AMBIL"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visibility_layer = 1048577

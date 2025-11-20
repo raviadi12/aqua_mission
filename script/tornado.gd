@@ -1,9 +1,9 @@
-extends AnimatedSprite2D
+extends CharacterBody2D
 
 @export var base_speed: float = 30.0
-@export var speed_variation: float = 20.0
-@export var wander_radius: float = 250.0
-@export var trigger_distance: float = 100.0
+@export var speed_variation: float = 200.0
+@export var wander_radius: float = 1500.0
+@export var trigger_distance: float = 200.0
 @export var damage_per_second: float = 10.0
 
 var player: CharacterBody2D = null
@@ -15,9 +15,12 @@ var sine_frequency: float
 var cosine_frequency: float
 var sine_amplitude: float
 var cosine_amplitude: float
+var anim: AnimatedSprite2D = null
 
 func _ready():
-	play("default")
+	anim = $AnimatedSprite2D
+	if anim:
+		anim.play("default")
 	
 	# Add audio player
 	var audio = AudioStreamPlayer2D.new()
@@ -51,7 +54,7 @@ func _ready():
 	
 	add_to_group("tornado")
 
-func _process(delta):
+func _physics_process(delta):
 	# Random wandering movement using sine and cosine
 	var time = Time.get_ticks_msec() / 1000.0 + time_offset
 	
@@ -64,15 +67,18 @@ func _process(delta):
 	var current_speed = base_speed + sin(time * 0.5) * speed_variation
 	current_speed *= speed_multiplier
 	
-	# Move
-	global_position += movement_direction * current_speed * delta
+	# Set velocity for physics movement
+	velocity = movement_direction * current_speed
 	
 	# Keep within wander radius from spawn
 	var distance_from_spawn = global_position.distance_to(spawn_position)
 	if distance_from_spawn > wander_radius:
 		# Push back toward spawn
 		var to_spawn = (spawn_position - global_position).normalized()
-		global_position += to_spawn * current_speed * delta * 2.0
+		velocity += to_spawn * current_speed * 2.0
+	
+	# Use physics-based movement
+	move_and_slide()
 	
 	# Check if near player for damage
 	if player_hitbox:

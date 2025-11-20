@@ -8,6 +8,7 @@ var burn_delay = 1.0 # Time to burn one piece of trash
 
 @onready var progress_indicator = $BurnProgress
 @onready var progress_bar = $BurnProgress/ProgressBar
+@onready var progress_label = $BurnProgress/Label
 
 var player: CharacterBody2D = null
 
@@ -30,6 +31,9 @@ func _process(delta: float) -> void:
 	if progress_bar and Global.total_trash_in_level > 0:
 		progress_bar.max_value = Global.total_trash_in_level
 		progress_bar.value = HoldingItem.quantity_trash_burned
+		
+		if progress_label:
+			progress_label.text = "%d / %d" % [HoldingItem.quantity_trash_burned, Global.total_trash_in_level]
 	
 	# Process trash in buffer
 	if trash_buffer > 0:
@@ -49,6 +53,11 @@ func _burn_one_trash():
 	trash_buffer -= 1
 	HoldingItem.quantity_trash_burned += 1
 	print("Trash burned! Total burned: ", HoldingItem.quantity_trash_burned)
+	
+	# Check for popup triggers
+	var popup_manager = get_tree().get_first_node_in_group("popup_manager")
+	if popup_manager and popup_manager.has_method("check_variable_trigger"):
+		popup_manager.check_variable_trigger("HoldingItem.quantity_trash_burned", float(HoldingItem.quantity_trash_burned))
 
 func _on_area_furnace_area_entered(area: Area2D) -> void:
 	# Check if the area belongs to the player or interaction layer

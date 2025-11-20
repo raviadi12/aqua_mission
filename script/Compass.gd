@@ -1,6 +1,7 @@
 extends Control
 
 @export var rotation_calibration: float = 0.0 # Degrees to offset the compass
+@export var furnace_target_offset: Vector2 = Vector2(-250, 0) # Offset to apply to furnace position
 
 var player: Node2D
 var furnace: Node2D
@@ -51,7 +52,8 @@ func _draw():
 	draw_arc(compass_center, radius, 0, TAU, 32, Color(1, 1, 1), 3.0)
 	
 	# Calculate direction
-	var dir_vector = (furnace.global_position - player.global_position).normalized()
+	var furnace_target_pos = furnace.global_position + furnace_target_offset
+	var dir_vector = (furnace_target_pos - player.global_position).normalized()
 	# Rotate vector by negative player rotation to align with screen
 	# Apply calibration offset
 	var relative_dir = dir_vector.rotated(-player.rotation + deg_to_rad(rotation_calibration))

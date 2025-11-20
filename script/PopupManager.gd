@@ -5,8 +5,9 @@ var completed_popups: Array = []
 var current_level_data: Array = []
 var pause_count: int = 0
 
-func _init():
+func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_initialize_popups()
 
 func request_pause():
 	pause_count += 1
@@ -26,7 +27,7 @@ func release_pause():
 
 var popup_scene = preload("res://scenes/UI_scenes/BubblePopup.tscn")
 
-func _ready():
+func _initialize_popups():
 	# Determine current level
 	var current_scene_path = get_tree().current_scene.scene_file_path
 	var level_key = ""
@@ -37,8 +38,10 @@ func _ready():
 	
 	if level_key in Global.LEVEL_POPUP_DATA:
 		current_level_data = Global.LEVEL_POPUP_DATA[level_key]
-		print("PopupManager: Loaded data for ", level_key)
-		_check_triggers("game_start")
+		print("PopupManager: Loaded data for ", level_key, " with ", current_level_data.size(), " popups")
+		
+		# Now spawn the popups
+		call_deferred("_check_triggers", "game_start")
 	else:
 		print("PopupManager: No popup data for ", level_key)
 
@@ -65,8 +68,17 @@ func check_variable_trigger(variable_name: String, value: float):
 	_check_triggers("on_variable_above", {"variable": variable_name, "value": value})
 
 func _spawn_popup(data: Dictionary):
-	if data["id"] in completed_popups:
+	if data["id"] in completed_popups or data["id"] in active_popups:
 		return
+	
+	# Mark as active immediately to prevent double spawning
+	active_popups.append(data["id"])
+	
+	# Check if we need to pause
+	var behaviors = data.get("behavior", [])
+	if "game_pause" in behaviors:
+		print("PopupManager: Pausing for popup ", data["id"])
+		request_pause()
 	
 	# Defer creation to avoid "parent busy" errors during _ready
 	call_deferred("_create_popup_nodes", data)
@@ -76,6 +88,7 @@ func _create_popup_nodes(data: Dictionary):
 	# Add to a CanvasLayer to ensure it's on top of everything
 	var canvas = CanvasLayer.new()
 	canvas.layer = 100 # High layer
+	canvas.process_mode = Node.PROCESS_MODE_ALWAYS # Ensure popup works when game is paused
 	
 	if get_tree() and get_tree().current_scene:
 		get_tree().current_scene.add_child(canvas)
@@ -84,11 +97,12 @@ func _create_popup_nodes(data: Dictionary):
 		popup.setup(data)
 		popup.popup_closed.connect(_on_popup_closed.bind(canvas))
 		
-		active_popups.append(data["id"])
+		# active_popups.append(data["id"]) # Already added in _spawn_popup
 	else:
 		# Cleanup if failed
 		canvas.queue_free()
 		popup.queue_free()
+		active_popups.erase(data["id"]) # Remove if failed to spawn
 
 func _on_popup_closed(popup_id: String, canvas_layer: CanvasLayer):
 	active_popups.erase(popup_id)

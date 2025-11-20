@@ -138,11 +138,8 @@ func _apply_behaviors(behaviors: Array):
 	for i in range(behaviors.size()):
 		var b = behaviors[i]
 		if b == "game_pause":
-			if popup_manager:
-				popup_manager.request_pause()
-			elif get_tree():
-				get_tree().paused = true
-				print("BubblePopup: Game paused (no manager)")
+			# Don't request pause again, PopupManager already did it
+			pass
 		elif b == "highlight_ui":
 			# Next element should be the node path
 			if i + 1 < behaviors.size():
